@@ -1,0 +1,9 @@
+gene_id,species,symbol,synonyms,description,go_terms,pathways,evidence_url,trait_bucket
+103451170,Malus × domestica (Golden Delicious),MdFT1,FT;FT1;FT2;LOC103451170,protein HEADING DATE 3A-like (FT homolog controlling flowering time on new wood),,,"https://www.ncbi.nlm.nih.gov/gene/103451170",flowering
+114821933,Malus × domestica (Golden Delicious),MdRGA,LOC114821933,DELLA protein GAIP-B (growth repressor in gibberellin signaling; dwarfing gene),,,"https://www.ncbi.nlm.nih.gov/gene/114821933",height
+103430094,Malus × domestica (Golden Delicious),MdMYB16,LOC103430094,transcription factor MYB16 (R2R3-MYB family involved in secondary cell wall and lignin regulation),,,"https://www.ncbi.nlm.nih.gov/gene/103430094",wood_strength
+103433253,Malus × domestica (Golden Delicious),MdTFL1a,TFL1-2;MdTFL1a;MdTFL1-2;LOC103433253,protein TERMINAL FLOWER 1-like (repressor of flowering meristem identity),GO:0009910;GO:0010228,,"https://www.ncbi.nlm.nih.gov/gene/103433253",flowering
+103449452,Malus × domestica (Golden Delicious),LOC103449452,,protein TERMINAL FLOWER 1-like,,,"https://www.ncbi.nlm.nih.gov/gene/103449452",flowering
+103407485,Malus × domestica (Golden Delicious),MdMYB83,MYB;MYB47;LOC103407485,transcription factor MYB83-like (activator of secondary cell wall biosynthesis),,,"https://www.ncbi.nlm.nih.gov/gene/103407485",wood_strength
+103413149,Malus × domestica (Golden Delicious),LOC103413149,,cinnamoyl-CoA reductase 1-like (lignin biosynthesis enzyme),,,"https://www.ncbi.nlm.nih.gov/gene/103413149",wood_strength
+103455081,Malus × domestica (Golden Delicious),LOC103455081,,protein PAL OF QUIRKY-like,GO:0005515,,"https://www.ncbi.nlm.nih.gov/gene/103455081",wood_strength
