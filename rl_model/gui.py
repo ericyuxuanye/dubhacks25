@@ -12,6 +12,12 @@ import time
 import random
 import tkinter as tk
 from tkinter import ttk
+import webbrowser
+import os
+import urllib.parse
+import http.server
+import socketserver
+from functools import partial
 
 from .train import train as train_fn
 
@@ -22,6 +28,11 @@ class TrainingGUI:
         self.episodes = episodes
         self.seq_len = seq_len
         self.max_edits = max_edits
+        
+        # HTTP server for serving visualizer
+        self.httpd = None
+        self.server_port = 8765
+        self.server_thread = None
 
         master.title("BloomSync AI — Training Demo")
 
@@ -43,10 +54,14 @@ class TrainingGUI:
 
         self.result_lbl = ttk.Label(self.frame, text="Final seq: -")
         self.result_lbl.grid(row=4, column=0, pady=(4, 0))
+        
+        # Button to open visualizer
+        self.viz_btn = ttk.Button(self.frame, text="🧬 Open Visualizer", command=self.open_visualizer, state="disabled")
+        self.viz_btn.grid(row=5, column=0, pady=(8, 0))
 
         # Objectives: checkboxes to allow any combination
         self.objectives_frame = ttk.LabelFrame(self.frame, text="Objectives", padding=8)
-        self.objectives_frame.grid(row=5, column=0, pady=(8, 0), sticky="w")
+        self.objectives_frame.grid(row=6, column=0, pady=(8, 0), sticky="w")
 
         # BooleanVars for each objective
         self.obj_vars = {
@@ -73,13 +88,14 @@ class TrainingGUI:
         ]
         self.preset_var = tk.StringVar(value="Custom")
         self.preset_combo = ttk.Combobox(self.frame, values=presets, textvariable=self.preset_var, state="readonly", width=60)
-        self.preset_combo.grid(row=6, column=0, pady=(8, 0))
+        self.preset_combo.grid(row=7, column=0, pady=(8, 0))
         self.preset_combo.bind("<<ComboboxSelected>>", self._on_preset_selected)
 
         self.training_thread = None
         self.training_done = False
         self.agent = None
         self.env = None
+        self.initial_sequence = None  # Store initial sequence for visualizer
 
     def start_training(self):
         if self.training_thread and self.training_thread.is_alive():
@@ -96,6 +112,8 @@ class TrainingGUI:
             self.env = SequenceEnv(seq_len=self.seq_len, max_edits=self.max_edits)
             # attach selected objectives to the env (non-intrusive attribute)
             self.env.objectives = self.get_selected_objectives()
+            # Store the initial sequence for the visualizer
+            self.initial_sequence = self.env.sequence
             # show initial sequence and selected objectives
             selected = self._format_selected_objectives(self.env.objectives)
             if selected:
@@ -152,10 +170,86 @@ class TrainingGUI:
         else:
             self.result_lbl.config(text=f"Final seq: {final}")
         self.start_btn.config(state="normal")
+        # Enable visualizer button
+        self.viz_btn.config(state="normal")
 
     def _on_failure(self, msg):
         self.status_lbl.config(text=f"Error: {msg}")
         self.start_btn.config(state="normal")
+    
+    def _start_server(self):
+        """Start a simple HTTP server to serve the visualizer HTML."""
+        if self.httpd is not None:
+            return  # Server already running
+        
+        # Get the parent directory path
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        parent_dir = os.path.dirname(script_dir)
+        
+        # Create a custom handler that serves from parent_dir
+        handler = partial(http.server.SimpleHTTPRequestHandler, directory=parent_dir)
+        
+        # Find an available port
+        for port in range(self.server_port, self.server_port + 10):
+            try:
+                self.httpd = socketserver.TCPServer(("", port), handler)
+                self.server_port = port
+                break
+            except OSError:
+                continue
+        
+        if self.httpd is None:
+            print("Error: Could not find available port for server")
+            return
+        
+        # Start server in background thread
+        self.server_thread = threading.Thread(target=self.httpd.serve_forever, daemon=True)
+        self.server_thread.start()
+        print(f"[INFO] HTTP server started on port {self.server_port}")
+    
+    def open_visualizer(self):
+        """Open the HTML visualizer with the initial and final sequences as URL parameters."""
+        if not self.initial_sequence or not self.env:
+            return
+        
+        # Start the HTTP server if not already running
+        self._start_server()
+        
+        if self.httpd is None:
+            self.status_lbl.config(text="Error: Could not start server")
+            return
+        
+        # Get the path to the HTML file to verify it exists
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        parent_dir = os.path.dirname(script_dir)
+        html_path = os.path.join(parent_dir, "sequence_transformation_viz.html")
+        
+        # Check if file exists
+        if not os.path.exists(html_path):
+            self.status_lbl.config(text="Error: Visualizer HTML not found")
+            return
+        
+        # Build URL with query parameters
+        final_seq = self.env.sequence
+        
+        print(f"\n[DEBUG] Opening visualizer:")
+        print(f"  Initial sequence: {self.initial_sequence}")
+        print(f"  Final sequence:   {final_seq}")
+        
+        # URL encode the sequences
+        params = urllib.parse.urlencode({
+            'initial': self.initial_sequence,
+            'target': final_seq
+        })
+        
+        # Use localhost URL instead of file://
+        url = f"http://localhost:{self.server_port}/sequence_transformation_viz.html?{params}"
+        
+        print(f"  URL: {url}")
+        
+        # Open in browser
+        webbrowser.open_new_tab(url)
+        self.status_lbl.config(text=f"Visualizer opened at localhost:{self.server_port}")
 
     def _on_preset_selected(self, event=None):
         """Apply a preset to the checkbox vars."""

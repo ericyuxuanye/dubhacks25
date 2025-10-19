@@ -367,7 +367,7 @@
             1.5, 0.4, 0.85
         );
         composer.addPass(bloomPass);
-        
+    
         // Controls
         const controls = new OrbitControls(camera, renderer.domElement);
         controls.enableDamping = true;
@@ -602,9 +602,51 @@
         
         // Initialize
         function init() {
-            initialSequence = randomSequence(SEQ_LENGTH);
-            targetSequence = randomSequence(SEQ_LENGTH);
-            currentSequence = initialSequence;
+            console.log('Full URL:', window.location.href);
+            console.log('Search string:', window.location.search);
+            console.log('Hash string:', window.location.hash);
+            
+            let initialParam = null;
+            let targetParam = null;
+            
+            // Try hash first (better for file:// URLs)
+            if (window.location.hash) {
+                const hashParams = new URLSearchParams(window.location.hash.substring(1));
+                initialParam = hashParams.get('initial');
+                targetParam = hashParams.get('target');
+                console.log('Trying hash params - Initial:', initialParam, 'Target:', targetParam);
+            }
+            
+            // Fallback to query params if hash didn't work
+            if (!initialParam) {
+                const urlParams = new URLSearchParams(window.location.search);
+                initialParam = urlParams.get('initial');
+                targetParam = urlParams.get('target');
+                console.log('Trying query params - Initial:', initialParam, 'Target:', targetParam);
+            }
+            
+            // Validate sequences if provided
+            const isValidSequence = (seq) => {
+                return seq && seq.length > 0 && /^[ACGT]+$/.test(seq);
+            };
+            
+            if (isValidSequence(initialParam) && isValidSequence(targetParam)) {
+                // Use sequences from URL parameters
+                initialSequence = initialParam;
+                targetSequence = targetParam;
+                currentSequence = initialSequence;
+                console.log('✓ Loaded sequences from URL parameters');
+                console.log('  Initial:', initialSequence);
+                console.log('  Target:', targetSequence);
+            } else {
+                // Generate random sequences
+                initialSequence = randomSequence(SEQ_LENGTH);
+                targetSequence = randomSequence(SEQ_LENGTH);
+                currentSequence = initialSequence;
+                console.log('✗ Generated random sequences (params not valid)');
+                console.log('  Initial param valid:', isValidSequence(initialParam));
+                console.log('  Target param valid:', isValidSequence(targetParam));
+            }
             
             displaySequence('initial-seq', initialSequence);
             displaySequence('current-seq', currentSequence);

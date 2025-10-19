@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>URL Parameter Test</title>
+    <style>
+        body {
+            font-family: monospace;
+            padding: 20px;
+            background: #1a1a1a;
+            color: #00ff00;
+        }
+        .result {
+            margin: 10px 0;
+            padding: 10px;
+            background: #2a2a2a;
+            border-left: 3px solid #00ff00;
+        }
+        .error {
+            border-left-color: #ff0000;
+            color: #ff6666;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 URL Parameter Test</h1>
+    <p>This page tests if your browser can read query parameters from file:// URLs</p>
+    
+    <div id="results"></div>
+    
+    <h2>Instructions:</h2>
+    <ol>
+        <li>Open this file with query parameters like: <br>
+            <code>file:///path/to/test_url_params.html?initial=ACGT&target=TGCA</code>
+        </li>
+        <li>Check if the parameters are displayed above</li>
+    </ol>
+    
+    <script>
+        const results = document.getElementById('results');
+        
+        function addResult(label, value, isError = false) {
+            const div = document.createElement('div');
+            div.className = isError ? 'result error' : 'result';
+            div.innerHTML = `<strong>${label}:</strong> ${value || '(empty)'}`;
+            results.appendChild(div);
+        }
+        
+        // Test 1: Full URL
+        addResult('Full URL', window.location.href);
+        
+        // Test 2: Search string
+        addResult('Search string (window.location.search)', window.location.search || '(empty)', !window.location.search);
+        
+        // Test 3: Hash
+        addResult('Hash (window.location.hash)', window.location.hash || '(empty)');
+        
+        // Test 4: Try to parse query params
+        const searchParams = new URLSearchParams(window.location.search);
+        const initial = searchParams.get('initial');
+        const target = searchParams.get('target');
+        
+        addResult('Query param "initial"', initial, !initial);
+        addResult('Query param "target"', target, !target);
+        
+        // Test 5: Try hash params
+        if (window.location.hash) {
+            const hashParams = new URLSearchParams(window.location.hash.substring(1));
+            const hashInitial = hashParams.get('initial');
+            const hashTarget = hashParams.get('target');
+            addResult('Hash param "initial"', hashInitial);
+            addResult('Hash param "target"', hashTarget);
+        }
+        
+        // Test 6: Browser info
+        addResult('Browser', navigator.userAgent);
+        
+        // Summary
+        if (initial && target) {
+            addResult('✅ SUCCESS', 'Query parameters work in this browser!', false);
+        } else {
+            addResult('❌ FAILED', 'Query parameters not accessible from file:// URLs in this browser', true);
+            addResult('💡 Solution', 'We need to use a local web server or alternative method', false);
+        }
+    </script>
+</body>
+</html>
