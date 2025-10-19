@@ -328,7 +328,7 @@
         };
         
         const SEQ_LENGTH = 20;
-        const MAX_EDITS = 10;
+        const MAX_EDITS = 1000;
         
         // State
         let initialSequence = '';
@@ -561,7 +561,7 @@
         
         window.stepTransformation = function() {
             if (currentStep >= MAX_EDITS || currentSequence === targetSequence) {
-                alert('Transformation complete or max edits reached!');
+                alert('Transformation complete!');
                 return;
             }
             performEdit();

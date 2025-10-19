@@ -1,134 +1,134 @@
-gene_id_or_entry_id,species,symbol_or_gene,description,go_terms,evidence_url,source,fasta
-A0A498I0Y9,Malus domestica (Apple) (Pyrus malus),C2 domain-containing protein,,,https://www.uniprot.org/uniprotkb/A0A498I0Y9,UniProt,">tr|A0A498I0Y9|A0A498I0Y9_MALDO C2 domain-containing protein OS=Malus domestica OX=3750 GN=DVH24_019447 PE=4 SV=1
-MSKSFFACKLCSRKKRIALVVQVKHFNQNYKNALVMNAGIFKTIKVCAFLGTREAFKVAP
-MKSQAAPNQEDYKLKDTKPRLGERWPHGGVRGGGGWISSERATSTYDLVEQMFYLYVRVE
-KAKDLPTNPVTGSCDPYIEVKLGNYKGKTKHFEKKTNPEWKQVFAFSKEKIQSSILEVYV
-RDREMVARDDNVGKVVFDMNEVPTRVPPDSPLAPQWYRLEDRRGDTKVRGEVMLAVWMGT
-QADEAFPEAWHSDAASVHGEGVFSIRSKVYVSPKLWYLRVNVIEAQDVEPHDRSQLPQAF
-IKAHVGNQTLKTKISPTRTPNPMWNEDLIFVAAEPFEEQLVLTVENKVSAAKDEQVGKIS
-LPLTIFERRLDHRPVHSHWFNLEKFGFGALEGDKRHELKFSTRVHLRVCLEGAYHVLDES
-TLYISDVRPTARQLWKQPIGILETVAGDIATQGERFQAVLSWRDPRASSLFVFLCLIAAV
-VLYVTPFKMIALATGIVWLRHPRFRSKLPSVPSNFFRRLPSCADSML
-"
-A0A498I666,Malus domestica (Apple) (Pyrus malus),C2 domain-containing protein,,,https://www.uniprot.org/uniprotkb/A0A498I666,UniProt,">tr|A0A498I666|A0A498I666_MALDO C2 domain-containing protein OS=Malus domestica OX=3750 GN=DVH24_019491 PE=4 SV=1
-MQRPPSEDFALKETKPHLGGGRISGDKLTSTYDLVEQMQYLYVRVVKAKDLPAKDVTGSC
-DPYVEVRLGNYKGATRHFEKKSNPEWNQVFAFSKDRIQATVLEVVVKDKDVVKDDLIGRV
-SFDLNEVPKRVPPDSPLAPQWYRLEDHKANKARGELMLAVWMGTQADEAFPEAWHSDAAT
-ISGADSLSNIRSKVYLSPKLWYLRVNVIEAQDLIPSDKGRYPEVYVKAILGNQALRTRIS
-PSRSLNPMWNEDLMFVASEPFEEPLILSVEDRIASNKDEVLGRCAIPLQYVHRRYDHKPV
-NTSWHNLEKHVIIEGEKKKEIKFASRIHMRICLEGGYHVLDESTHYSSDLRPTAKPLWKS
-SIGVLETVVGDLATQGERLQSLLSWRDPRATALFVLFCLIAAIILYVTPFQVVALLTGFY
-VLRHPRFRHKLPSVPLNFFRRLPARTDCML
-"
-A0A498IBN4,Malus domestica (Apple) (Pyrus malus),C2 domain-containing protein,,,https://www.uniprot.org/uniprotkb/A0A498IBN4,UniProt,">tr|A0A498IBN4|A0A498IBN4_MALDO C2 domain-containing protein OS=Malus domestica OX=3750 GN=DVH24_005092 PE=4 SV=1
-MQRPPPEDFALKETKPHLGGGRISGDKLTSTYDLVEQMQYLYVRVVKAKDLPAKDVTGSC
-DPYVEVKLGNYKGATRHFEKKSNPEWNQVFAFSKDRIQATVLEVIVKDKDLMKDDFMGRV
-SFDLNEVPKRVPPDSPLAPQWYRLEDHKGNKARGELMLAVWMGTQADEAFPEAWHSDAAT
-ISGADSLANIRSKVYLSPKLWYLRVNVIEAQDLIPSDKGRYPEVYVKAILGNQALRTRIS
-PSRSINPMWNEDLMFVASEPFEEPLILSVEDRIAPNKDEILGRCAIPLQYVPRRYDHKPV
-NTSWHNLEKHVIVEGEKKKEIKFASRIHMRICLEGGYHVLDESTHYSSDLRPTAKPLWKS
-SIGILETVVGDLATQGERLQSLLSWRDPRATALFVLFCLIAAIVLYVTPFQVVALLAGFY
-VLRHPRFRHKLPSVPLNFFRRLPARTDCML
-"
-A0A498IGA0,Malus domestica (Apple) (Pyrus malus),C2 domain-containing protein,,,https://www.uniprot.org/uniprotkb/A0A498IGA0,UniProt,">tr|A0A498IGA0|A0A498IGA0_MALDO C2 domain-containing protein OS=Malus domestica OX=3750 GN=DVH24_005086 PE=4 SV=1
-MNKSIFVCKQKEENCTNSPTDVLQAKLQDSTGHACWILQNNQGTREAYKVAPMKSQAAPN
-QEDYKLKDTKPQLGERWPHGGLRGGGGWISSDRATSTYDLVEQMFYLYVRVEKAKDLPTN
-PVTGSCDPYVQVKLGNYKGKTKHFEKKTNPEWKEVFAFAKEKIQSSVLEVYVKDKGMVAR
-DDYVGKVVFDMHEVPTRVPPDSPLAPQWYRLEDRRRDTKVRGEVMLAVWMGTQADEAFPE
-AWHSDAASVHGEGVFSIRSKVYVSPKLWYLRVNVIEAQDVEPHDRSQPPQAFVKAHVGNQ
-TLKTKVSPTRTANPMWNEDLVFVAAEPFEEQLVLTVENKVSAAKDEHVGKINLPLTIFER
-RLDHRPVHSRWFNLEKFGFGALEGDKRHDHKFSTRVHLRVCLEGAYHVLDESTLYISDVR
-PTARQLWKHPIGILEAVLSWRDPRASSLFVLLCLIAAVVLYVTPFKMIALAAGIVWLRHP
-RFRSKLPSIPSNFFRRLPSRADSML
-"
-A0A498IQ16,Malus domestica (Apple) (Pyrus malus),C2 domain-containing protein,,,https://www.uniprot.org/uniprotkb/A0A498IQ16,UniProt,">tr|A0A498IQ16|A0A498IQ16_MALDO C2 domain-containing protein OS=Malus domestica OX=3750 GN=DVH24_042047 PE=4 SV=1
-MLAPQNAPKKEDFSLKEIKPKITGKAANTSGPSTTFDLVEQMQYLYVKFEKVRGLPPACH
-PYIEVNIGNYKATTQHLENNNQVFAFKRDKLQSNKVDILVKDKAAVAGDGTIGKFDFAVN
-EAQMRILPNSPFASQWVRLKDEKELKGAELLLAYWMGAQADGAFNEPYYADTASVVSGYG
-VSETHPKMYDFYYKLWYLRVNVIQAEDLVFRDMNNGKPREIFVKASVGRWVLRTKASQTK
-TDNPMWNEDLMFVVAEKFEDDLIVSVEEKVDNMGGSFTLGSCKIPLANVAKRNNAAAATA
-VKYNLEMMEKLEGKVKFASKMQMRVSLDGGYHVLDEPAHSISDYRPSAKALWKPKIGTLI
-YTLIGALVYCVFVGIRSYPNRPKQIPHINTELSHLHTALPDVLDEELDPFPTRRTDVETL
-RRRYDRLRSIGLNIQTLLGDIATQGERVQSLLSWRDPRATSMFVISCVIAVFILSVVRFD
-AIVFLAGGYVLLPPIFRTRFPVYPQNLLRRMPAKTDIFV
-"
-A0A498J355,Malus domestica (Apple) (Pyrus malus),C2 domain-containing protein,,,https://www.uniprot.org/uniprotkb/A0A498J355,UniProt,">tr|A0A498J355|A0A498J355_MALDO C2 domain-containing protein OS=Malus domestica OX=3750 GN=DVH24_000021 PE=4 SV=1
-MAKQNTAKEDFSLKETSPNITGRRFSTGPMTSFDLVEHMQYLYVRIVKARDLPPTADPYV
-ELKLGNYRAVTTPFKKNPNPEWNQVFAFSKDRIQAVSMEILVKDKAVVAEGGDHGTIGMF
-GFAMAECPSRVPPDSPLAPQWYMLEDQNKAKIRGDLMLSYWIGTQADEAFPDAWHADVAS
-VSGDGLSSTRSKVYLSPRLWYMRVNVIQAQDLVLKDNNRKQAPEFFVKAQFGNVVLRSGV
-STDKNFNPTWNEDLMFVVAEPFDDPLVISVQEKTNNKEESAGQIVIPLRDVDKRIDATPA
-TPKWYNLGTVEVVEGVPKEVKFASKIQIRVSLDGGYHVLDEPAHSTIWLAGFYAMRHPKC
-RDRFPSLLQNLIRRLPARSDSMFWHMLIMFSNKDDLYAIRNTSGYVL
-"
-A0A498JHI9,Malus domestica (Apple) (Pyrus malus),CEN-like protein 1,,,https://www.uniprot.org/uniprotkb/A0A498JHI9,UniProt,">tr|A0A498JHI9|A0A498JHI9_MALDO CEN-like protein 1 OS=Malus domestica OX=3750 GN=DVH24_024714 PE=3 SV=1
-MSRMMEPLTLGRVIGEVVDIFTPTVNLNVVYNPNRQVANGHELMPSVIAAKPRVEIGGED
-MRTAYTLIMTDPDFPSPSEPYLREHLHWMVTDIPGTTDVSFGKEIVEYEIPRPVVGIHRY
-VFLLFKQRGRQTVRAPASRDNFNTRIFSQENGLGLPVAAVYFNAQRATAARRRC
-"
-B9VJ16,Malus domestica (Apple) (Pyrus malus),FT-like protein 2 (Flowering locus T),,,https://www.uniprot.org/uniprotkb/B9VJ16,UniProt,">tr|B9VJ16|B9VJ16_MALDO FT-like protein 2 OS=Malus domestica OX=3750 GN=FT2 PE=2 SV=1
-MPRDRDPLVVGRVVGDVLDPFTRSVSLRVTYGNKEVNNGCELKPSQVVHQPRVDTGGDDL
-RTFYTLVMVDPDAPSPSDPNLKEYLHWLVTDIPATTAASFGQEIVCYESPRPTVGIHRFV
-FVLFRQLGRQTVYAPGWRQNFNTRDFAELYNLGLPVAAVYFNCQRESGSGGRRR
-"
-E2D2C4,Malus domestica (Apple) (Pyrus malus),Flowering locus T,,,https://www.uniprot.org/uniprotkb/E2D2C4,UniProt,">tr|E2D2C4|E2D2C4_MALDO Flowering locus T OS=Malus domestica OX=3750 GN=FT-3 PE=2 SV=1
-MPRDRDPLVVGRVVGDVLDPFTRSVSLRVTYGNKEVNNGCEPKPSQVVHQPRVDTGGDDL
-RTFYTLVMVDPDAPSPSDPNLKEYLHWLVTDIPATTAASFGQEIVCYESPRPTVGIHRFV
-FVLFRQLGRQTVYAPGWRQNFNTRDFAELYNLGLPVAAVYFNCQRESGSGGRRR
-"
-E5LCQ1,Malus domestica (Apple) (Pyrus malus),FT-like protein 1,,,https://www.uniprot.org/uniprotkb/E5LCQ1,UniProt,">tr|E5LCQ1|E5LCQ1_MALDO FT-like protein 1 OS=Malus domestica OX=3750 GN=FT1 PE=2 SV=1
-MPRDRDPLVVGRVVGDVLDPFTRSVSLRVTYGTKEVNNGCELKPSEVVQQSRADIGGDDL
-RTFYTLVMVDPDAPSPSDPNLKEYLHWLVTDIPATTAASFGQEIVCYESPRPTVGIHRFV
-LVVFRQLGRQTVYAPGWRQNFNTRDFAELYNLGLPVSVVYFNCQREGGSGGRRR
-"
-Q75QW8,Malus domestica (Apple) (Pyrus malus),Flowering locus T (MdFT1 FT FT2),,,https://www.uniprot.org/uniprotkb/Q75QW8,UniProt,">tr|Q75QW8|Q75QW8_MALDO Flowering locus T OS=Malus domestica OX=3750 GN=MdFT1 PE=2 SV=1
-MPRDRDPLVVGRVVGDVLDPFTRSVSLRVTYGTKEVNNGCELKPSEVVQQPRADIGGDDL
-RTFYTLVMVDPDAPSPSDPNLKEYLHWLVTDIPATTAASFGQEIVCYESPRPTVGIHRFV
-LVVFRQLGRQTVYAPGWRQNFNTRDFAELYNLGLPVSVVYFNCQREGGSGGRRR
-"
-U3RIZ5,Malus domestica (Apple) (Pyrus malus),MFTb,,,https://www.uniprot.org/uniprotkb/U3RIZ5,UniProt,">tr|U3RIZ5|U3RIZ5_MALDO MFTb OS=Malus domestica OX=3750 PE=2 SV=1
-MAASVDPLVVGRVIGDVVDMFVPTVSMSVYFGSKHVTNGCDIKPSMAINPPKITVSGHPG
-ELYTLVMTDPDAPSPSEPSMREWVHWIVSDIPGGSNPLRGKEILPYVGPRPPVGIHRYIL
-VLFQQKAPMGLVEQPPSRAHFNTRFFAAQLDLGLPVSTVYFNSQKEPANRRR
-"
-U3RPC5,Malus domestica (Apple) (Pyrus malus),BFTb,,,https://www.uniprot.org/uniprotkb/U3RPC5,UniProt,">tr|U3RPC5|U3RPC5_MALDO BFTb OS=Malus domestica OX=3750 GN=DVH24_022582 PE=2 SV=1
-MSRTTEPLTVGRVIGEVVDIFTPSVKLNVVYNPNKQVANGHELMPSVIAEKPRVDIGGDD
-MRIAYTLIMTDPDYPGPSDPYLKEHLHWMVTDIPGTTDVSFGKETVEYETPKPVVGIHRY
-VFLLFKQRGRQTVRAPASRDNFNTRKFSQENGLGLPVAAVYFNAQRETAARRR
-"
-B2NID9,Malus domestica (Apple) (Pyrus malus),CENTRORADIALIS-like protein (MdCENa),,,https://www.uniprot.org/uniprotkb/B2NID9,UniProt,">tr|B2NID9|B2NID9_MALDO CENTRORADIALIS like protein OS=Malus domestica OX=3750 GN=MdCENa PE=2 SV=1
-MAMLSSDPLVVGRVIGDVVDYFSPSVKMTVSYNSNKKVYNGHELFPSSVTIKPKVEVHGG
-DLRSFFTLVMTDPDVPGPSDPYLKEHLHWIVTDIPGTTDNTFGMEVVKYEMPRPNIGIHR
-FVFLLFKQKGRQTVIPPASKDHFNTRKFAEANDLGLPVTAVFFNAQRETAARRR
-"
-B2NIE0,Malus domestica (Apple) (Pyrus malus),CENTRORADIALIS-like protein (MdCENb),,,https://www.uniprot.org/uniprotkb/B2NIE0,UniProt,">tr|B2NIE0|B2NIE0_MALDO CENTRORADIALIS like protein OS=Malus domestica OX=3750 GN=MdCENb PE=2 SV=1
-MAMMSSDPLVVGRVIGDVVDYFSPSVRMTVTYNSNKKVYNGHELFPSSVTIKPKVEVHGG
-DLRSFFTLVMTDPDVPGPSDPYLKEHLHWIVTDIPGTTDNTFGKEVVKYEMPRPNIGIHR
-FVFLLFKQKARQTVIPPASKDHFNTRKFAEANDLGLPVTAVFFNAQRETAARRR
-"
-B3VT04,Malus domestica (Apple) (Pyrus malus),Terminal flower 1 (TFL1-1),,,https://www.uniprot.org/uniprotkb/B3VT04,UniProt,">tr|B3VT04|B3VT04_MALDO Terminal flower 1 (Fragment) OS=Malus domestica OX=3750 GN=TFL1-1 PE=3 SV=1
-VVGRVIGDVLDSFTATTKMSVTYNTKLVCNGLELFPSVVTAKPRVEIQGGDMRSFFTLVM
-TDPDFPGPSDPYLREHLHWIVTDIPGTTDATFGREVVSYEMPKPNIGIHRFVFVLFKQNQ
-RQSINTPSSRDHFSTRSFAAENDLGLPVAAVYFNAQRETAARRR
-"
-B3VT18,Malus domestica (Apple) (Pyrus malus),Terminal flower 1 (TFL1-2),,,https://www.uniprot.org/uniprotkb/B3VT18,UniProt,">tr|B3VT18|B3VT18_MALDO Terminal flower 1 (Fragment) OS=Malus domestica OX=3750 GN=TFL1-2 PE=3 SV=1
-VVGRVIGDVLDSFTPTTHMSVTYNAKLVCNGLELFPSVVTAKPRVEIQGGELRSFFTLVM
-TDPDCPGPSDPYLREHLHWIVTDIPGTTDAAFGREALSYEMPRPNIGIHRFVFVLFKQKR
-RQSINIPSSRDCFSTRSFAAENDLGLPVAAVYFNAQRESAARRR
-"
-Q5KTD3,Malus domestica (Apple) (Pyrus malus),TFL1-like protein (Terminal flower 1 MdTFL1a),,,https://www.uniprot.org/uniprotkb/Q5KTD3,UniProt,">tr|Q5KTD3|Q5KTD3_MALDO TFL1-like protein OS=Malus domestica OX=3750 GN=MdTFL1-2 PE=2 SV=1
-MARVPEPLVVGRVIGDVLDSFTPTTHMSVTYNAKLVCNGLELFPSVVTAKPRVEIQGGEL
-RSFFTLVMTDPDCPGPSDPYLREHLHWIVTDIPGTTDAAFGREALSYEMPRPNIGIHRFV
-FVLFKQKRRQSINIPSSRDCFSTRSFAAENDLGLPVAAVYFNAQRESAARRR
-"
-Q6YNE5,Malus domestica (Apple) (Pyrus malus),AP1-like protein (APETALA1-like),,,https://www.uniprot.org/uniprotkb/Q6YNE5,UniProt,">tr|Q6YNE5|Q6YNE5_MALDO AP1-like protein OS=Malus domestica OX=3750 GN=MdAP1a PE=2 SV=1
-MGRGRVQLKRIENKINRQVTFSKRSTGLLKKAHEISVLCDAQVALIVFSNKGKLLEYATD
-SCMEQILERYERYSYAERQLVEPDFESQGNWTFEYSRLKAKVEVLQRNHRHYLGEDLDSL
-TLKEIQSLEQQLDTAHKQIRLRKNQLMHESITELQRKEKAIQEQNNLLAKKIKEKEKAAA
-QPQVQNWEQQNHDLDLLPQPLPCLNIGGTQQDEFLQVRRNQLDLTLEPFYSCHLGCFAA
-"
-Q76M79,Malus domestica (Apple) (Pyrus malus),TFL1-like protein (Terminal flower 1 MdTFL1-1),,,https://www.uniprot.org/uniprotkb/Q76M79,UniProt,">tr|Q76M79|Q76M79_MALDO TFL1-like protein OS=Malus domestica OX=3750 GN=MdTFL1 PE=2 SV=1
-MKRASEPLVVGRVIGDVLDSFTATTKMSVTYNTKLVCNGLELFPSVVTAKPRVEIQGGDM
-RSFFTLVMTDPDFPGPSDPYLREHLHWIVTDIPGTTDATFGREVVSYEMPKPNIGIHRFV
-FVLFKQNQRQSINTPSSRDHFSTRSFAAENDLGLPVAAVYFNAQRETAARRR
-"
+gene_id_or_entry_id, species                              , symbol_or_gene                                , description, go_terms, evidence_url                                , source , fasta
+A0A498I0Y9         , Malus domestica (Apple) (Pyrus malus), C2 domain-containing protein                  ,            ,         , https://www.uniprot.org/uniprotkb/A0A498I0Y9, UniProt, ">tr|A0A498I0Y9|A0A498I0Y9_MALDO C2 domain-containing protein OS=Malus domestica OX=3750 GN=DVH24_019447 PE=4 SV=1
+                                                                                                                                                                                          MSKSFFACKLCSRKKRIALVVQVKHFNQNYKNALVMNAGIFKTIKVCAFLGTREAFKVAP
+                                                                                                                                                                                          MKSQAAPNQEDYKLKDTKPRLGERWPHGGVRGGGGWISSERATSTYDLVEQMFYLYVRVE
+                                                                                                                                                                                          KAKDLPTNPVTGSCDPYIEVKLGNYKGKTKHFEKKTNPEWKQVFAFSKEKIQSSILEVYV
+                                                                                                                                                                                          RDREMVARDDNVGKVVFDMNEVPTRVPPDSPLAPQWYRLEDRRGDTKVRGEVMLAVWMGT
+                                                                                                                                                                                          QADEAFPEAWHSDAASVHGEGVFSIRSKVYVSPKLWYLRVNVIEAQDVEPHDRSQLPQAF
+                                                                                                                                                                                          IKAHVGNQTLKTKISPTRTPNPMWNEDLIFVAAEPFEEQLVLTVENKVSAAKDEQVGKIS
+                                                                                                                                                                                          LPLTIFERRLDHRPVHSHWFNLEKFGFGALEGDKRHELKFSTRVHLRVCLEGAYHVLDES
+                                                                                                                                                                                          TLYISDVRPTARQLWKQPIGILETVAGDIATQGERFQAVLSWRDPRASSLFVFLCLIAAV
+                                                                                                                                                                                          VLYVTPFKMIALATGIVWLRHPRFRSKLPSVPSNFFRRLPSCADSML
+                                                                                                                                                                                          "
+A0A498I666         , Malus domestica (Apple) (Pyrus malus), C2 domain-containing protein                  ,            ,         , https://www.uniprot.org/uniprotkb/A0A498I666, UniProt, ">tr|A0A498I666|A0A498I666_MALDO C2 domain-containing protein OS=Malus domestica OX=3750 GN=DVH24_019491 PE=4 SV=1
+                                                                                                                                                                                          MQRPPSEDFALKETKPHLGGGRISGDKLTSTYDLVEQMQYLYVRVVKAKDLPAKDVTGSC
+                                                                                                                                                                                          DPYVEVRLGNYKGATRHFEKKSNPEWNQVFAFSKDRIQATVLEVVVKDKDVVKDDLIGRV
+                                                                                                                                                                                          SFDLNEVPKRVPPDSPLAPQWYRLEDHKANKARGELMLAVWMGTQADEAFPEAWHSDAAT
+                                                                                                                                                                                          ISGADSLSNIRSKVYLSPKLWYLRVNVIEAQDLIPSDKGRYPEVYVKAILGNQALRTRIS
+                                                                                                                                                                                          PSRSLNPMWNEDLMFVASEPFEEPLILSVEDRIASNKDEVLGRCAIPLQYVHRRYDHKPV
+                                                                                                                                                                                          NTSWHNLEKHVIIEGEKKKEIKFASRIHMRICLEGGYHVLDESTHYSSDLRPTAKPLWKS
+                                                                                                                                                                                          SIGVLETVVGDLATQGERLQSLLSWRDPRATALFVLFCLIAAIILYVTPFQVVALLTGFY
+                                                                                                                                                                                          VLRHPRFRHKLPSVPLNFFRRLPARTDCML
+                                                                                                                                                                                          "
+A0A498IBN4         , Malus domestica (Apple) (Pyrus malus), C2 domain-containing protein                  ,            ,         , https://www.uniprot.org/uniprotkb/A0A498IBN4, UniProt, ">tr|A0A498IBN4|A0A498IBN4_MALDO C2 domain-containing protein OS=Malus domestica OX=3750 GN=DVH24_005092 PE=4 SV=1
+                                                                                                                                                                                          MQRPPPEDFALKETKPHLGGGRISGDKLTSTYDLVEQMQYLYVRVVKAKDLPAKDVTGSC
+                                                                                                                                                                                          DPYVEVKLGNYKGATRHFEKKSNPEWNQVFAFSKDRIQATVLEVIVKDKDLMKDDFMGRV
+                                                                                                                                                                                          SFDLNEVPKRVPPDSPLAPQWYRLEDHKGNKARGELMLAVWMGTQADEAFPEAWHSDAAT
+                                                                                                                                                                                          ISGADSLANIRSKVYLSPKLWYLRVNVIEAQDLIPSDKGRYPEVYVKAILGNQALRTRIS
+                                                                                                                                                                                          PSRSINPMWNEDLMFVASEPFEEPLILSVEDRIAPNKDEILGRCAIPLQYVPRRYDHKPV
+                                                                                                                                                                                          NTSWHNLEKHVIVEGEKKKEIKFASRIHMRICLEGGYHVLDESTHYSSDLRPTAKPLWKS
+                                                                                                                                                                                          SIGILETVVGDLATQGERLQSLLSWRDPRATALFVLFCLIAAIVLYVTPFQVVALLAGFY
+                                                                                                                                                                                          VLRHPRFRHKLPSVPLNFFRRLPARTDCML
+                                                                                                                                                                                          "
+A0A498IGA0         , Malus domestica (Apple) (Pyrus malus), C2 domain-containing protein                  ,            ,         , https://www.uniprot.org/uniprotkb/A0A498IGA0, UniProt, ">tr|A0A498IGA0|A0A498IGA0_MALDO C2 domain-containing protein OS=Malus domestica OX=3750 GN=DVH24_005086 PE=4 SV=1
+                                                                                                                                                                                          MNKSIFVCKQKEENCTNSPTDVLQAKLQDSTGHACWILQNNQGTREAYKVAPMKSQAAPN
+                                                                                                                                                                                          QEDYKLKDTKPQLGERWPHGGLRGGGGWISSDRATSTYDLVEQMFYLYVRVEKAKDLPTN
+                                                                                                                                                                                          PVTGSCDPYVQVKLGNYKGKTKHFEKKTNPEWKEVFAFAKEKIQSSVLEVYVKDKGMVAR
+                                                                                                                                                                                          DDYVGKVVFDMHEVPTRVPPDSPLAPQWYRLEDRRRDTKVRGEVMLAVWMGTQADEAFPE
+                                                                                                                                                                                          AWHSDAASVHGEGVFSIRSKVYVSPKLWYLRVNVIEAQDVEPHDRSQPPQAFVKAHVGNQ
+                                                                                                                                                                                          TLKTKVSPTRTANPMWNEDLVFVAAEPFEEQLVLTVENKVSAAKDEHVGKINLPLTIFER
+                                                                                                                                                                                          RLDHRPVHSRWFNLEKFGFGALEGDKRHDHKFSTRVHLRVCLEGAYHVLDESTLYISDVR
+                                                                                                                                                                                          PTARQLWKHPIGILEAVLSWRDPRASSLFVLLCLIAAVVLYVTPFKMIALAAGIVWLRHP
+                                                                                                                                                                                          RFRSKLPSIPSNFFRRLPSRADSML
+                                                                                                                                                                                          "
+A0A498IQ16         , Malus domestica (Apple) (Pyrus malus), C2 domain-containing protein                  ,            ,         , https://www.uniprot.org/uniprotkb/A0A498IQ16, UniProt, ">tr|A0A498IQ16|A0A498IQ16_MALDO C2 domain-containing protein OS=Malus domestica OX=3750 GN=DVH24_042047 PE=4 SV=1
+                                                                                                                                                                                          MLAPQNAPKKEDFSLKEIKPKITGKAANTSGPSTTFDLVEQMQYLYVKFEKVRGLPPACH
+                                                                                                                                                                                          PYIEVNIGNYKATTQHLENNNQVFAFKRDKLQSNKVDILVKDKAAVAGDGTIGKFDFAVN
+                                                                                                                                                                                          EAQMRILPNSPFASQWVRLKDEKELKGAELLLAYWMGAQADGAFNEPYYADTASVVSGYG
+                                                                                                                                                                                          VSETHPKMYDFYYKLWYLRVNVIQAEDLVFRDMNNGKPREIFVKASVGRWVLRTKASQTK
+                                                                                                                                                                                          TDNPMWNEDLMFVVAEKFEDDLIVSVEEKVDNMGGSFTLGSCKIPLANVAKRNNAAAATA
+                                                                                                                                                                                          VKYNLEMMEKLEGKVKFASKMQMRVSLDGGYHVLDEPAHSISDYRPSAKALWKPKIGTLI
+                                                                                                                                                                                          YTLIGALVYCVFVGIRSYPNRPKQIPHINTELSHLHTALPDVLDEELDPFPTRRTDVETL
+                                                                                                                                                                                          RRRYDRLRSIGLNIQTLLGDIATQGERVQSLLSWRDPRATSMFVISCVIAVFILSVVRFD
+                                                                                                                                                                                          AIVFLAGGYVLLPPIFRTRFPVYPQNLLRRMPAKTDIFV
+                                                                                                                                                                                          "
+A0A498J355         , Malus domestica (Apple) (Pyrus malus), C2 domain-containing protein                  ,            ,         , https://www.uniprot.org/uniprotkb/A0A498J355, UniProt, ">tr|A0A498J355|A0A498J355_MALDO C2 domain-containing protein OS=Malus domestica OX=3750 GN=DVH24_000021 PE=4 SV=1
+                                                                                                                                                                                          MAKQNTAKEDFSLKETSPNITGRRFSTGPMTSFDLVEHMQYLYVRIVKARDLPPTADPYV
+                                                                                                                                                                                          ELKLGNYRAVTTPFKKNPNPEWNQVFAFSKDRIQAVSMEILVKDKAVVAEGGDHGTIGMF
+                                                                                                                                                                                          GFAMAECPSRVPPDSPLAPQWYMLEDQNKAKIRGDLMLSYWIGTQADEAFPDAWHADVAS
+                                                                                                                                                                                          VSGDGLSSTRSKVYLSPRLWYMRVNVIQAQDLVLKDNNRKQAPEFFVKAQFGNVVLRSGV
+                                                                                                                                                                                          STDKNFNPTWNEDLMFVVAEPFDDPLVISVQEKTNNKEESAGQIVIPLRDVDKRIDATPA
+                                                                                                                                                                                          TPKWYNLGTVEVVEGVPKEVKFASKIQIRVSLDGGYHVLDEPAHSTIWLAGFYAMRHPKC
+                                                                                                                                                                                          RDRFPSLLQNLIRRLPARSDSMFWHMLIMFSNKDDLYAIRNTSGYVL
+                                                                                                                                                                                          "
+A0A498JHI9         , Malus domestica (Apple) (Pyrus malus), CEN-like protein 1                            ,            ,         , https://www.uniprot.org/uniprotkb/A0A498JHI9, UniProt, ">tr|A0A498JHI9|A0A498JHI9_MALDO CEN-like protein 1 OS=Malus domestica OX=3750 GN=DVH24_024714 PE=3 SV=1
+                                                                                                                                                                                          MSRMMEPLTLGRVIGEVVDIFTPTVNLNVVYNPNRQVANGHELMPSVIAAKPRVEIGGED
+                                                                                                                                                                                          MRTAYTLIMTDPDFPSPSEPYLREHLHWMVTDIPGTTDVSFGKEIVEYEIPRPVVGIHRY
+                                                                                                                                                                                          VFLLFKQRGRQTVRAPASRDNFNTRIFSQENGLGLPVAAVYFNAQRATAARRRC
+                                                                                                                                                                                          "
+B9VJ16             , Malus domestica (Apple) (Pyrus malus), FT-like protein 2 (Flowering locus T)         ,            ,         , https://www.uniprot.org/uniprotkb/B9VJ16    , UniProt, ">tr|B9VJ16|B9VJ16_MALDO FT-like protein 2 OS=Malus domestica OX=3750 GN=FT2 PE=2 SV=1
+                                                                                                                                                                                          MPRDRDPLVVGRVVGDVLDPFTRSVSLRVTYGNKEVNNGCELKPSQVVHQPRVDTGGDDL
+                                                                                                                                                                                          RTFYTLVMVDPDAPSPSDPNLKEYLHWLVTDIPATTAASFGQEIVCYESPRPTVGIHRFV
+                                                                                                                                                                                          FVLFRQLGRQTVYAPGWRQNFNTRDFAELYNLGLPVAAVYFNCQRESGSGGRRR
+                                                                                                                                                                                          "
+E2D2C4             , Malus domestica (Apple) (Pyrus malus), Flowering locus T                             ,            ,         , https://www.uniprot.org/uniprotkb/E2D2C4    , UniProt, ">tr|E2D2C4|E2D2C4_MALDO Flowering locus T OS=Malus domestica OX=3750 GN=FT-3 PE=2 SV=1
+                                                                                                                                                                                          MPRDRDPLVVGRVVGDVLDPFTRSVSLRVTYGNKEVNNGCEPKPSQVVHQPRVDTGGDDL
+                                                                                                                                                                                          RTFYTLVMVDPDAPSPSDPNLKEYLHWLVTDIPATTAASFGQEIVCYESPRPTVGIHRFV
+                                                                                                                                                                                          FVLFRQLGRQTVYAPGWRQNFNTRDFAELYNLGLPVAAVYFNCQRESGSGGRRR
+                                                                                                                                                                                          "
+E5LCQ1             , Malus domestica (Apple) (Pyrus malus), FT-like protein 1                             ,            ,         , https://www.uniprot.org/uniprotkb/E5LCQ1    , UniProt, ">tr|E5LCQ1|E5LCQ1_MALDO FT-like protein 1 OS=Malus domestica OX=3750 GN=FT1 PE=2 SV=1
+                                                                                                                                                                                          MPRDRDPLVVGRVVGDVLDPFTRSVSLRVTYGTKEVNNGCELKPSEVVQQSRADIGGDDL
+                                                                                                                                                                                          RTFYTLVMVDPDAPSPSDPNLKEYLHWLVTDIPATTAASFGQEIVCYESPRPTVGIHRFV
+                                                                                                                                                                                          LVVFRQLGRQTVYAPGWRQNFNTRDFAELYNLGLPVSVVYFNCQREGGSGGRRR
+                                                                                                                                                                                          "
+Q75QW8             , Malus domestica (Apple) (Pyrus malus), Flowering locus T (MdFT1 FT FT2)              ,            ,         , https://www.uniprot.org/uniprotkb/Q75QW8    , UniProt, ">tr|Q75QW8|Q75QW8_MALDO Flowering locus T OS=Malus domestica OX=3750 GN=MdFT1 PE=2 SV=1
+                                                                                                                                                                                          MPRDRDPLVVGRVVGDVLDPFTRSVSLRVTYGTKEVNNGCELKPSEVVQQPRADIGGDDL
+                                                                                                                                                                                          RTFYTLVMVDPDAPSPSDPNLKEYLHWLVTDIPATTAASFGQEIVCYESPRPTVGIHRFV
+                                                                                                                                                                                          LVVFRQLGRQTVYAPGWRQNFNTRDFAELYNLGLPVSVVYFNCQREGGSGGRRR
+                                                                                                                                                                                          "
+U3RIZ5             , Malus domestica (Apple) (Pyrus malus), MFTb                                          ,            ,         , https://www.uniprot.org/uniprotkb/U3RIZ5    , UniProt, ">tr|U3RIZ5|U3RIZ5_MALDO MFTb OS=Malus domestica OX=3750 PE=2 SV=1
+                                                                                                                                                                                          MAASVDPLVVGRVIGDVVDMFVPTVSMSVYFGSKHVTNGCDIKPSMAINPPKITVSGHPG
+                                                                                                                                                                                          ELYTLVMTDPDAPSPSEPSMREWVHWIVSDIPGGSNPLRGKEILPYVGPRPPVGIHRYIL
+                                                                                                                                                                                          VLFQQKAPMGLVEQPPSRAHFNTRFFAAQLDLGLPVSTVYFNSQKEPANRRR
+                                                                                                                                                                                          "
+U3RPC5             , Malus domestica (Apple) (Pyrus malus), BFTb                                          ,            ,         , https://www.uniprot.org/uniprotkb/U3RPC5    , UniProt, ">tr|U3RPC5|U3RPC5_MALDO BFTb OS=Malus domestica OX=3750 GN=DVH24_022582 PE=2 SV=1
+                                                                                                                                                                                          MSRTTEPLTVGRVIGEVVDIFTPSVKLNVVYNPNKQVANGHELMPSVIAEKPRVDIGGDD
+                                                                                                                                                                                          MRIAYTLIMTDPDYPGPSDPYLKEHLHWMVTDIPGTTDVSFGKETVEYETPKPVVGIHRY
+                                                                                                                                                                                          VFLLFKQRGRQTVRAPASRDNFNTRKFSQENGLGLPVAAVYFNAQRETAARRR
+                                                                                                                                                                                          "
+B2NID9             , Malus domestica (Apple) (Pyrus malus), CENTRORADIALIS-like protein (MdCENa)          ,            ,         , https://www.uniprot.org/uniprotkb/B2NID9    , UniProt, ">tr|B2NID9|B2NID9_MALDO CENTRORADIALIS like protein OS=Malus domestica OX=3750 GN=MdCENa PE=2 SV=1
+                                                                                                                                                                                          MAMLSSDPLVVGRVIGDVVDYFSPSVKMTVSYNSNKKVYNGHELFPSSVTIKPKVEVHGG
+                                                                                                                                                                                          DLRSFFTLVMTDPDVPGPSDPYLKEHLHWIVTDIPGTTDNTFGMEVVKYEMPRPNIGIHR
+                                                                                                                                                                                          FVFLLFKQKGRQTVIPPASKDHFNTRKFAEANDLGLPVTAVFFNAQRETAARRR
+                                                                                                                                                                                          "
+B2NIE0             , Malus domestica (Apple) (Pyrus malus), CENTRORADIALIS-like protein (MdCENb)          ,            ,         , https://www.uniprot.org/uniprotkb/B2NIE0    , UniProt, ">tr|B2NIE0|B2NIE0_MALDO CENTRORADIALIS like protein OS=Malus domestica OX=3750 GN=MdCENb PE=2 SV=1
+                                                                                                                                                                                          MAMMSSDPLVVGRVIGDVVDYFSPSVRMTVTYNSNKKVYNGHELFPSSVTIKPKVEVHGG
+                                                                                                                                                                                          DLRSFFTLVMTDPDVPGPSDPYLKEHLHWIVTDIPGTTDNTFGKEVVKYEMPRPNIGIHR
+                                                                                                                                                                                          FVFLLFKQKARQTVIPPASKDHFNTRKFAEANDLGLPVTAVFFNAQRETAARRR
+                                                                                                                                                                                          "
+B3VT04             , Malus domestica (Apple) (Pyrus malus), Terminal flower 1 (TFL1-1)                    ,            ,         , https://www.uniprot.org/uniprotkb/B3VT04    , UniProt, ">tr|B3VT04|B3VT04_MALDO Terminal flower 1 (Fragment) OS=Malus domestica OX=3750 GN=TFL1-1 PE=3 SV=1
+                                                                                                                                                                                          VVGRVIGDVLDSFTATTKMSVTYNTKLVCNGLELFPSVVTAKPRVEIQGGDMRSFFTLVM
+                                                                                                                                                                                          TDPDFPGPSDPYLREHLHWIVTDIPGTTDATFGREVVSYEMPKPNIGIHRFVFVLFKQNQ
+                                                                                                                                                                                          RQSINTPSSRDHFSTRSFAAENDLGLPVAAVYFNAQRETAARRR
+                                                                                                                                                                                          "
+B3VT18             , Malus domestica (Apple) (Pyrus malus), Terminal flower 1 (TFL1-2)                    ,            ,         , https://www.uniprot.org/uniprotkb/B3VT18    , UniProt, ">tr|B3VT18|B3VT18_MALDO Terminal flower 1 (Fragment) OS=Malus domestica OX=3750 GN=TFL1-2 PE=3 SV=1
+                                                                                                                                                                                          VVGRVIGDVLDSFTPTTHMSVTYNAKLVCNGLELFPSVVTAKPRVEIQGGELRSFFTLVM
+                                                                                                                                                                                          TDPDCPGPSDPYLREHLHWIVTDIPGTTDAAFGREALSYEMPRPNIGIHRFVFVLFKQKR
+                                                                                                                                                                                          RQSINIPSSRDCFSTRSFAAENDLGLPVAAVYFNAQRESAARRR
+                                                                                                                                                                                          "
+Q5KTD3             , Malus domestica (Apple) (Pyrus malus), TFL1-like protein (Terminal flower 1 MdTFL1a) ,            ,         , https://www.uniprot.org/uniprotkb/Q5KTD3    , UniProt, ">tr|Q5KTD3|Q5KTD3_MALDO TFL1-like protein OS=Malus domestica OX=3750 GN=MdTFL1-2 PE=2 SV=1
+                                                                                                                                                                                          MARVPEPLVVGRVIGDVLDSFTPTTHMSVTYNAKLVCNGLELFPSVVTAKPRVEIQGGEL
+                                                                                                                                                                                          RSFFTLVMTDPDCPGPSDPYLREHLHWIVTDIPGTTDAAFGREALSYEMPRPNIGIHRFV
+                                                                                                                                                                                          FVLFKQKRRQSINIPSSRDCFSTRSFAAENDLGLPVAAVYFNAQRESAARRR
+                                                                                                                                                                                          "
+Q6YNE5             , Malus domestica (Apple) (Pyrus malus), AP1-like protein (APETALA1-like)              ,            ,         , https://www.uniprot.org/uniprotkb/Q6YNE5    , UniProt, ">tr|Q6YNE5|Q6YNE5_MALDO AP1-like protein OS=Malus domestica OX=3750 GN=MdAP1a PE=2 SV=1
+                                                                                                                                                                                          MGRGRVQLKRIENKINRQVTFSKRSTGLLKKAHEISVLCDAQVALIVFSNKGKLLEYATD
+                                                                                                                                                                                          SCMEQILERYERYSYAERQLVEPDFESQGNWTFEYSRLKAKVEVLQRNHRHYLGEDLDSL
+                                                                                                                                                                                          TLKEIQSLEQQLDTAHKQIRLRKNQLMHESITELQRKEKAIQEQNNLLAKKIKEKEKAAA
+                                                                                                                                                                                          QPQVQNWEQQNHDLDLLPQPLPCLNIGGTQQDEFLQVRRNQLDLTLEPFYSCHLGCFAA
+                                                                                                                                                                                          "
+Q76M79             , Malus domestica (Apple) (Pyrus malus), TFL1-like protein (Terminal flower 1 MdTFL1-1),            ,         , https://www.uniprot.org/uniprotkb/Q76M79    , UniProt, ">tr|Q76M79|Q76M79_MALDO TFL1-like protein OS=Malus domestica OX=3750 GN=MdTFL1 PE=2 SV=1
+                                                                                                                                                                                          MKRASEPLVVGRVIGDVLDSFTATTKMSVTYNTKLVCNGLELFPSVVTAKPRVEIQGGDM
+                                                                                                                                                                                          RSFFTLVMTDPDFPGPSDPYLREHLHWIVTDIPGTTDATFGREVVSYEMPKPNIGIHRFV
+                                                                                                                                                                                          FVLFKQNQRQSINTPSSRDHFSTRSFAAENDLGLPVAAVYFNAQRETAARRR
+                                                                                                                                                                                          "
