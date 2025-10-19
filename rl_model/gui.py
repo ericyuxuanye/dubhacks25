@@ -152,7 +152,7 @@ class TrainingGUI:
             return
 
         # increase quickly at first, then slower
-        step = random.randint(2, 8) if cur < 60 else random.randint(1, 4)
+        step = random.randint(2, 5) if cur < 60 else random.randint(1, 3)
         new = min(cur + step, 95)
         self.progress.set(new)
         # schedule next update
