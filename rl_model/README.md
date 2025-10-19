@@ -1,101 +1,134 @@
-# rl_model (BloomSync AI toy)
 
-This folder contains a small, safe, abstract reinforcement learning toy that
-demonstrates sequence-editing with a simple reward model. It's intended for
-educational/demo purposes and does not provide any wet-lab actionable advice.
+# BloomSync AI
 
-Files:
-- `env.py`: Sequence editing environment.
-- `reward_model.py`: Simulated reward function (k-mer and motif based).
-- `agent.py`: Small PyTorch REINFORCE agent.
-- `train.py`: Training loop.
-- `run_demo.py`: Short demo runner.
-- `tests/test_env.py`: Basic smoke tests.
+This package contains a small, self-contained reinforcement learning toy used
+for demos and education. It lives inside the repo's `rl_model/` folder. See
+the top-level `README.md` for a full project overview and quickstart.
 
-Architecture (mapping to PlantUML):
+Key modules
+- `env.py` — `SequenceEnv`, a minimal sequence-editing environment.
+- `agent.py` — REINFORCE-style policy agent.
+- `reward_model.py` — toy reward function used by the demo.
+- `train.py` — the training loop used by CLI and GUI demos.
+- `gui.py` — Tkinter graphical demo. The GUI now includes an Objectives panel
+  (checkboxes + presets) that lets users select any combination of demo
+  objectives; selections are attached to the env as `env.objectives` for
+  demonstration purposes.
+- `tests/test_env.py` — basic smoke tests.
 
-The project architecture follows the BloomSync AI RL sketch. Below is a
-concise mapping of PlantUML components to the package modules:
-
-- RL Agent:
-	- Encoder: `encoder.SimpleEncoder` (toy embedding)
-	- Policy Head: `agent.PolicyNet` + softmax
-	- Value Head: `value.ValueHead` (optional)
-
-- Environment (`env.SequenceEnv`): sequence simulator (apply edit/stop)
-
-- Scorers (`scorers.py`): ft_similarity, tfl1_similarity, motif_validator
-
-- Constraint Engine (`constraints.py`): enforce_budget, allowed_positions_mask
-
-- Reward Model (`reward_model.py`): compute_reward combining scorers and constraints
-
-PlantUML source (for reference):
-
-```
-@startuml
-skinparam componentStyle rectangle
-skinparam shadowing false
-skinparam wrapWidth 200
-title BloomSync AI – RL Architecture (Flowering Edit Design)
-
-node "RL Agent" as AG {
-	component "Encoder\n(CNN/BiLSTM or Transformer)" as ENC
-	component "Policy Head\nπ(a|s)" as POL
-	component "Value Head\nV(s)" as VAL
-}
-
-node "Environment" as ENV {
-	component "Sequence Simulator\n(apply edit → seq')" as SIM
-	component "Scorers" as SCO {
-		[FT/TFL1 Similarity\n(aligner or embedder)]
-		[Motif Validator\n(PEBP loop, no STOP)]
-		[gRNA Feasibility\n(PAM, GC, length)]
-	}
-	component "Constraint Engine\n(length, budget, masks)" as CONS
-	component "Reward Model\n(learned DNN)" as REW
-}
-
-cloud "Reference Bank" as REF {
-	[AtFT, AtTFL1]
-	[SFT/SP, FvFT1/FvTFL1] 
-}
-
-database "Data Sources" as DS {
-	[NCBI]
-	[UniProt]
-	[GDR]
-}
-
-AG -down-> ENV : action a_t
-ENV -down-> SIM : apply edit/stop
-SIM -right-> SCO : seq'
-SCO -right-> CONS : flags/masks
-SCO -down-> REW : features
-CONS -down-> REW : constraints
-REW -left-> AG : reward r_t
-ENV -left-> AG : state s_{t+1}
-REF -[dotted]-> SCO
-DS -[dotted]-> ENV : annotations/GO
-@enduml
-```
-
-Note: the codebase provides high-level, non-actionable placeholders for the
-components in this diagram. If you want, I can progressively replace the
-placeholders with richer, testable implementations (encoder variations,
-learned reward network, or Gym API compatibility).
-
-Run a short demo:
+Running
+- Console demo:
 
 ```fish
 python -m rl_model.run_demo
 ```
 
-Graphical demo (Tkinter)
+- GUI demo (opens a window with a simulated progress bar + Objectives UI):
 
 ```fish
 python -m rl_model.gui
 ```
 
-This will open a small window with a "Start Training" button and a simulated
-progress bar. The underlying toy training still runs in the background.
+Notes
+- The GUI runs the training loop in a background thread and uses `tk.after`
+  for non-blocking UI updates. The training algorithm itself is unchanged by
+  the GUI controls; to make the training objective-aware, wire `env.objectives`
+  into `reward_model.compute_reward` (I can help with that).
+
+
+## Transformer-based reward model
+
+. Below is a
+concise description of the transformer-based reward model used in this project suitable for
+scoring how well a sequence edit altered a trait.
+
+Inputs and preprocessing
+- Input: pair of sequences (original sequence, edited sequence). Each
+  sequence is converted to a one-hot encoding (shape: L x 4 for bases A,C,G,T)
+  or an equivalent embedding (learned token embedding of size d_model).
+- Optionally concatenate the two sequences or pass them as a single sequence
+  with a separator token so the model can attend between original and edited
+  positions.
+- If required, include auxiliary metadata (selected objectives, position
+  masks, experimental conditions) as additional embeddings concatenated to
+  the token embeddings or appended to the transformer output.
+
+Architecture
+- Token embedding: learnable embedding (d_model), or use the one-hot inputs
+  projected to d_model via a linear layer.
+- Positional encoding: standard sinusoidal or learned positional encodings.
+- Transformer encoder stack: N layers of multi-head self-attention + feed-
+  forward blocks (pre-LN or post-LN depending on preference). Example sizes:
+  - N = 4..12 (small models for demo: N=4)
+  - d_model = 128..512 (demo: 128)
+  - heads = 4..8 (demo: 4)
+- Pooling and regression head: pool transformer outputs (CLS token or mean
+  pooling) and feed into a small MLP to predict a scalar score. Optionally
+  apply a sigmoid/tanh if you want bounded scores.
+
+We have a contrastive / ranking training objective that utilizes a BTL (Bradley Terry Luce) which compares pairs of edits and improves the probability of picking the better pair.
+
+
+### Bradley–Terry–Luce (BTL) ranking objective
+
+Use the model score r(x) (the scalar predicted by the transformer) as the utility in a BTL preference model.
+
+- Pairwise preference probability (a preferred to b):
+$$
+P(a \succ b) \;=\; \frac{\exp(r(a))}{\exp(r(a)) + \exp(r(b))}.
+$$
+
+- Multi-choice (choice from set S):
+$$
+P(i \mid S) \;=\; \frac{\exp(r(i))}{\sum_{k \in S} \exp(r(k))}.
+$$
+
+- Negative log-likelihood loss for pairwise training (dataset D contains pairs where a is preferred to b):
+$$
+\mathcal{L}_{\text{BTL}} \;=\; -\sum_{(a,b)\in D} \log\frac{\exp(r(a))}{\exp(r(a))+\exp(r(b))}.
+$$
+
+- Optional temperature / sharpness control:
+$$
+P(a \succ b) \;=\; \frac{\exp(r(a)/\tau)}{\exp(r(a)/\tau) + \exp(r(b)/\tau)},
+$$
+where τ>0 (smaller τ = sharper preferences).
+
+Integration notes:
+- Let r(·) be the transformer's scalar output; optimize the transformer (and any head) with the BTL loss (or equivalent cross-entropy on pairwise labels).
+- You can also use the BTL probabilities as soft targets to combine with other objectives (e.g., weighted sum with heuristics) when producing final rewards for the RL agent.
+
+
+Integration with the RL loop
+- Replace or augment `reward_model.compute_reward` with a wrapper that:
+  1. Encodes original and candidate sequences into the transformer input.
+  2. Runs a forward pass to produce a scalar score.
+  3. Optionally combines the predicted score with heuristic scorers and
+     constraint penalties to produce the final reward used by the agent.
+- To keep training fast during RL, consider:
+  - Using a compact transformer (N=2..4, d_model=64..128) as an online
+    inference model.
+  - Pre-computing features for unchanged regions and only re-evaluating
+    affected subsequences when edits are local.
+
+Inference and latency
+- For interactive demos, small transformers (few layers) will keep latency
+  low (<50–200ms per forward pass on CPU for short sequences). For batch
+  RL training, run the reward model on GPU or pre-compute candidate scores in
+  vectorized batches.
+
+Example hyperparameters (starter)
+- d_model: 128
+- layers (N): 4
+- heads: 4
+- dropout: 0.1
+- pooling: CLS token + 2-layer MLP head (hidden 256 → 1)
+- optimizer: AdamW, lr=1e-4 (linear warmup 500 steps, cosine decay)
+- batch size: 32–256 depending on GPU memory
+
+Notes on safety and evaluation
+- If you later use such a model to drive optimization, carefully validate
+  the learned reward against held-out experimental data and monitor for
+  pathological exploitation (reward hacking). Combine learned rewards with
+  constraints to enforce feasible edits.
+
