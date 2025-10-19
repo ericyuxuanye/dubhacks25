@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNA Sequence Transformation Visualization</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            overflow: hidden;
+            color: white;
+        }
+        
+        #canvas-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+        
+        #info-panel {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            max-width: 400px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(78, 204, 163, 0.3);
+            z-index: 100;
+        }
+        
+        #info-panel h1 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            color: #4ecca3;
+            text-shadow: 0 0 10px rgba(78, 204, 163, 0.5);
+        }
+        
+        .sequence-display {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            border-left: 4px solid;
+            word-break: break-all;
+            line-height: 1.6;
+        }
+        
+        #initial-seq {
+            border-left-color: #ef4444;
+        }
+        
+        #target-seq {
+            border-left-color: #4ecca3;
+        }
+        
+        #current-seq {
+            border-left-color: #fbbf24;
+        }
+        
+        .sequence-label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .base {
+            display: inline-block;
+            margin: 1px;
+            padding: 2px 4px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        .base-A { background: #ef4444; color: white; }
+        .base-C { background: #3b82f6; color: white; }
+        .base-G { background: #10b981; color: white; }
+        .base-T { background: #f59e0b; color: white; }
+        
+        .base-changed {
+            animation: pulse 0.5s ease-in-out;
+            box-shadow: 0 0 15px currentColor;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+        
+        .controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.85);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(78, 204, 163, 0.3);
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .controls button {
+            background: linear-gradient(135deg, #4ecca3 0%, #0891b2 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            margin: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(78, 204, 163, 0.3);
+        }
+        
+        .controls button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(78, 204, 163, 0.5);
+        }
+        
+        .controls button:active {
+            transform: translateY(0);
+        }
+        
+        .controls button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        #stats {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.85);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(78, 204, 163, 0.3);
+            z-index: 100;
+            min-width: 250px;
+        }
+        
+        #stats h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #4ecca3;
+        }
+        
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+        
+        .stat-label {
+            font-weight: bold;
+            color: #94a3b8;
+        }
+        
+        .stat-value {
+            font-weight: bold;
+            color: #4ecca3;
+        }
+        
+        #progress-bar {
+            width: 100%;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 15px;
+        }
+        
+        #progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4ecca3 0%, #0891b2 100%);
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+        
+        #legend {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(78, 204, 163, 0.3);
+            z-index: 100;
+        }
+        
+        #legend h4 {
+            margin-bottom: 10px;
+            color: #4ecca3;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            margin: 8px 0;
+            font-size: 14px;
+        }
+        
+        .legend-color {
+            width: 30px;
+            height: 20px;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="canvas-container"></div>
+    
+    <div id="info-panel">
+        <h1>🧬 DNA Sequence Transformation</h1>
+        <div>
+            <div class="sequence-label" style="color: #ef4444;">Initial Sequence:</div>
+            <div id="initial-seq" class="sequence-display"></div>
+        </div>
+        <div>
+            <div class="sequence-label" style="color: #fbbf24;">Current Sequence:</div>
+            <div id="current-seq" class="sequence-display"></div>
+        </div>
+        <div>
+            <div class="sequence-label" style="color: #4ecca3;">Target Sequence:</div>
+            <div id="target-seq" class="sequence-display"></div>
+        </div>
+    </div>
+    
+    <div id="stats">
+        <h3>📊 Transformation Stats</h3>
+        <div class="stat-row">
+            <span class="stat-label">Edit Step:</span>
+            <span class="stat-value" id="step-count">0 / 10</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Similarity:</span>
+            <span class="stat-value" id="similarity">0%</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Changes Made:</span>
+            <span class="stat-value" id="changes-made">0</span>
+        </div>
+        <div class="stat-row">
+            <span class="stat-label">Remaining:</span>
+            <span class="stat-value" id="remaining">20</span>
+        </div>
+        <div id="progress-bar">
+            <div id="progress-fill" style="width: 0%"></div>
+        </div>
+    </div>
+    
+    <div class="controls">
+        <button onclick="startTransformation()">▶️ Start Transformation</button>
+        <button onclick="stepTransformation()">⏭️ Next Edit</button>
+        <button onclick="pauseTransformation()">⏸️ Pause</button>
+        <button onclick="resetTransformation()">🔄 Reset</button>
+        <button onclick="randomizeSequences()">🎲 Random Sequences</button>
+    </div>
+    
+    <div id="legend">
+        <h4>DNA Base Legend</h4>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #ef4444;"></div>
+            <span>A - Adenine</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #3b82f6;"></div>
+            <span>C - Cytosine</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #10b981;"></div>
+            <span>G - Guanine</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #f59e0b;"></div>
+            <span>T - Thymine</span>
+        </div>
+    </div>
+    
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+        import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+        import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+        import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+        
+        // Constants
+        const BASES = ['A', 'C', 'G', 'T'];
+        const BASE_COLORS = {
+            'A': 0xef4444,
+            'C': 0x3b82f6,
+            'G': 0x10b981,
+            'T': 0xf59e0b
+        };
+        
+        const SEQ_LENGTH = 20;
+        const MAX_EDITS = 10;
+        
+        // State
+        let initialSequence = '';
+        let targetSequence = '';
+        let currentSequence = '';
+        let editHistory = [];
+        let currentStep = 0;
+        let isPlaying = false;
+        let animationInterval = null;
+        
+        // Three.js setup
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x0a0a1a);
+        scene.fog = new THREE.Fog(0x0a0a1a, 30, 100);
+        
+        const camera = new THREE.PerspectiveCamera(
+            75,
+            window.innerWidth / window.innerHeight,
+            0.1,
+            1000
+        );
+        camera.position.set(0, 10, 40);
+        
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+        
+        // Post-processing
+        const composer = new EffectComposer(renderer);
+        const renderPass = new RenderPass(scene, camera);
+        composer.addPass(renderPass);
+        
+        const bloomPass = new UnrealBloomPass(
+            new THREE.Vector2(window.innerWidth, window.innerHeight),
+            1.5, 0.4, 0.85
+        );
+        composer.addPass(bloomPass);
+        
+        // Controls
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+        
+        const pointLight1 = new THREE.PointLight(0x4ecca3, 2, 100);
+        pointLight1.position.set(30, 30, 30);
+        scene.add(pointLight1);
+        
+        const pointLight2 = new THREE.PointLight(0x667eea, 2, 100);
+        pointLight2.position.set(-30, -30, -30);
+        scene.add(pointLight2);
+        
+        // Sequence visualization groups
+        const sequenceGroup = new THREE.Group();
+        scene.add(sequenceGroup);
+        
+        // Helper functions
+        function randomSequence(length) {
+            return Array.from({ length }, () => BASES[Math.floor(Math.random() * BASES.length)]).join('');
+        }
+        
+        function calculateSimilarity(seq1, seq2) {
+            let matches = 0;
+            for (let i = 0; i < seq1.length; i++) {
+                if (seq1[i] === seq2[i]) matches++;
+            }
+            return Math.round((matches / seq1.length) * 100);
+        }
+        
+        function displaySequence(elementId, sequence, highlightIndices = []) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = sequence.split('').map((base, i) => {
+                const classes = `base base-${base}${highlightIndices.includes(i) ? ' base-changed' : ''}`;
+                return `<span class="${classes}">${base}</span>`;
+            }).join('');
+        }
+        
+        function updateStats() {
+            const similarity = calculateSimilarity(currentSequence, targetSequence);
+            const remaining = SEQ_LENGTH - Math.round((similarity / 100) * SEQ_LENGTH);
+            
+            document.getElementById('step-count').textContent = `${currentStep} / ${MAX_EDITS}`;
+            document.getElementById('similarity').textContent = `${similarity}%`;
+            document.getElementById('changes-made').textContent = editHistory.length;
+            document.getElementById('remaining').textContent = remaining;
+            document.getElementById('progress-fill').style.width = `${similarity}%`;
+        }
+        
+        // 3D Visualization
+        function createSequenceVisualization() {
+            // Clear existing
+            while(sequenceGroup.children.length > 0) {
+                sequenceGroup.remove(sequenceGroup.children[0]);
+            }
+            
+            const spacing = 2;
+            const startX = -(SEQ_LENGTH * spacing) / 2;
+            
+            // Create initial sequence (top row)
+            initialSequence.split('').forEach((base, i) => {
+                const geometry = new THREE.BoxGeometry(1.5, 1.5, 1.5);
+                const material = new THREE.MeshPhongMaterial({
+                    color: BASE_COLORS[base],
+                    emissive: BASE_COLORS[base],
+                    emissiveIntensity: 0.2,
+                    opacity: 0.6,
+                    transparent: true
+                });
+                const cube = new THREE.Mesh(geometry, material);
+                cube.position.set(startX + i * spacing, 8, 0);
+                sequenceGroup.add(cube);
+            });
+            
+            // Create current sequence (middle row) - animated
+            currentSequence.split('').forEach((base, i) => {
+                const geometry = new THREE.BoxGeometry(1.8, 1.8, 1.8);
+                const material = new THREE.MeshPhongMaterial({
+                    color: BASE_COLORS[base],
+                    emissive: BASE_COLORS[base],
+                    emissiveIntensity: 0.4
+                });
+                const cube = new THREE.Mesh(geometry, material);
+                cube.position.set(startX + i * spacing, 0, 0);
+                cube.userData = { baseIndex: i, base: base };
+                sequenceGroup.add(cube);
+                
+                // Add connection line to initial
+                if (initialSequence[i] !== base) {
+                    const points = [
+                        new THREE.Vector3(startX + i * spacing, 8, 0),
+                        new THREE.Vector3(startX + i * spacing, 0, 0)
+                    ];
+                    const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+                    const lineMaterial = new THREE.LineBasicMaterial({ 
+                        color: 0xfbbf24,
+                        opacity: 0.5,
+                        transparent: true
+                    });
+                    const line = new THREE.Line(lineGeometry, lineMaterial);
+                    sequenceGroup.add(line);
+                }
+            });
+            
+            // Create target sequence (bottom row)
+            targetSequence.split('').forEach((base, i) => {
+                const geometry = new THREE.BoxGeometry(1.5, 1.5, 1.5);
+                const material = new THREE.MeshPhongMaterial({
+                    color: BASE_COLORS[base],
+                    emissive: BASE_COLORS[base],
+                    emissiveIntensity: 0.2,
+                    opacity: 0.6,
+                    transparent: true
+                });
+                const cube = new THREE.Mesh(geometry, material);
+                cube.position.set(startX + i * spacing, -8, 0);
+                sequenceGroup.add(cube);
+                
+                // Add connection line if target matches current
+                if (currentSequence[i] === base) {
+                    const points = [
+                        new THREE.Vector3(startX + i * spacing, 0, 0),
+                        new THREE.Vector3(startX + i * spacing, -8, 0)
+                    ];
+                    const lineGeometry = new THREE.BufferGeometry().setFromPoints(points);
+                    const lineMaterial = new THREE.LineBasicMaterial({ 
+                        color: 0x4ecca3,
+                        opacity: 0.7,
+                        transparent: true
+                    });
+                    const line = new THREE.Line(lineGeometry, lineMaterial);
+                    sequenceGroup.add(line);
+                }
+            });
+        }
+        
+        function performEdit() {
+            // Find positions where current != target
+            const differences = [];
+            for (let i = 0; i < currentSequence.length; i++) {
+                if (currentSequence[i] !== targetSequence[i]) {
+                    differences.push(i);
+                }
+            }
+            
+            if (differences.length === 0) return false;
+            
+            // Pick a random difference to fix
+            const pos = differences[Math.floor(Math.random() * differences.length)];
+            const newBase = targetSequence[pos];
+            
+            // Update sequence
+            const seqArray = currentSequence.split('');
+            seqArray[pos] = newBase;
+            currentSequence = seqArray.join('');
+            
+            editHistory.push({ pos, base: newBase, step: currentStep });
+            currentStep++;
+            
+            // Update displays
+            displaySequence('current-seq', currentSequence, [pos]);
+            updateStats();
+            createSequenceVisualization();
+            
+            return true;
+        }
+        
+        // Control functions
+        window.startTransformation = function() {
+            if (currentSequence === targetSequence) {
+                alert('Already at target sequence! Reset to try again.');
+                return;
+            }
+            
+            isPlaying = true;
+            animationInterval = setInterval(() => {
+                if (currentStep >= MAX_EDITS || currentSequence === targetSequence) {
+                    pauseTransformation();
+                    if (currentSequence === targetSequence) {
+                        setTimeout(() => alert('🎉 Transformation complete!'), 500);
+                    }
+                    return;
+                }
+                performEdit();
+            }, 1000);
+        };
+        
+        window.stepTransformation = function() {
+            if (currentStep >= MAX_EDITS || currentSequence === targetSequence) {
+                alert('Transformation complete or max edits reached!');
+                return;
+            }
+            performEdit();
+        };
+        
+        window.pauseTransformation = function() {
+            isPlaying = false;
+            if (animationInterval) {
+                clearInterval(animationInterval);
+                animationInterval = null;
+            }
+        };
+        
+        window.resetTransformation = function() {
+            pauseTransformation();
+            currentSequence = initialSequence;
+            currentStep = 0;
+            editHistory = [];
+            displaySequence('current-seq', currentSequence);
+            updateStats();
+            createSequenceVisualization();
+        };
+        
+        window.randomizeSequences = function() {
+            pauseTransformation();
+            initialSequence = randomSequence(SEQ_LENGTH);
+            targetSequence = randomSequence(SEQ_LENGTH);
+            currentSequence = initialSequence;
+            currentStep = 0;
+            editHistory = [];
+            
+            displaySequence('initial-seq', initialSequence);
+            displaySequence('current-seq', currentSequence);
+            displaySequence('target-seq', targetSequence);
+            updateStats();
+            createSequenceVisualization();
+        };
+        
+        // Initialize
+        function init() {
+            initialSequence = randomSequence(SEQ_LENGTH);
+            targetSequence = randomSequence(SEQ_LENGTH);
+            currentSequence = initialSequence;
+            
+            displaySequence('initial-seq', initialSequence);
+            displaySequence('current-seq', currentSequence);
+            displaySequence('target-seq', targetSequence);
+            updateStats();
+            createSequenceVisualization();
+        }
+        
+        // Animation loop
+        let time = 0;
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            time += 0.01;
+            sequenceGroup.rotation.y = Math.sin(time * 0.3) * 0.1;
+            
+            controls.update();
+            composer.render();
+        }
+        
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            composer.setSize(window.innerWidth, window.innerHeight);
+        });
+        
+        // Start
+        init();
+        animate();
+    </script>
+</body>
+</html>
