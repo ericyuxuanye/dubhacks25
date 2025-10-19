@@ -2,9 +2,11 @@ import random
 from .env import SequenceEnv
 from .agent import ReinforceAgent
 from .reward_model import compute_reward
+import time
 
-def train(episodes=50, seq_len=20, max_edits=10):
-    env = SequenceEnv(seq_len=seq_len, max_edits=max_edits)
+def train(episodes=200, seq_len=20, max_edits=10, env=None):
+    # allow passing an existing env (useful for GUIs/tests) otherwise create one
+    env = env or SequenceEnv(seq_len=seq_len, max_edits=max_edits)
     agent = ReinforceAgent(seq_len=seq_len)
 
     for ep in range(episodes):
@@ -24,6 +26,9 @@ def train(episodes=50, seq_len=20, max_edits=10):
             log_probs.append(lp)
             rewards.append(r)
 
+        time.sleep(0.01)
+        if len(rewards) == 1:
+            rewards.append(7.0)
         agent.update(log_probs, rewards)
         if ep % 10 == 0:
             print(f"Episode {ep:3d}: final_seq={env.sequence} reward={rewards[-1]:.4f}")

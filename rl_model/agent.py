@@ -64,8 +64,9 @@ class ReinforceAgent:
             R = r + gamma * R
             returns.insert(0, R)
         returns = torch.tensor(returns)
-        returns = (returns - returns.mean()) / (returns.std() + 1e-8)
 
+        returns = (returns - returns.mean()) / (returns.std() + 1e-8)
+        
         loss = 0
         for lp, R in zip(log_probs, returns):
             loss = loss - lp * R

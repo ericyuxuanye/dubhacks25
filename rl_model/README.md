@@ -90,3 +90,12 @@ Run a short demo:
 ```fish
 python -m rl_model.run_demo
 ```
+
+Graphical demo (Tkinter)
+
+```fish
+python -m rl_model.gui
+```
+
+This will open a small window with a "Start Training" button and a simulated
+progress bar. The underlying toy training still runs in the background.
