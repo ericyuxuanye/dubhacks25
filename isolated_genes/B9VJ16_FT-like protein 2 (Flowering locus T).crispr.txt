@@ -1,0 +1,3 @@
+CRISPR targets for B9VJ16 (FT-like protein 2 (Flowering locus T)):
+Position 35: VNNGCELKPSQVVHQPRVDTGG
+Position 149: YNLGLPVAAVYFNCQRESGSGG

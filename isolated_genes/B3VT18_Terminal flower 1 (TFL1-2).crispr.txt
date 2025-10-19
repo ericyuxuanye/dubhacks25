@@ -1,0 +1,2 @@
+CRISPR targets for B3VT18 (Terminal flower 1 (TFL1-2)):
+Position 28: CNGLELFPSVVTAKPRVEIQGG

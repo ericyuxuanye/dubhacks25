@@ -1,0 +1,2 @@
+CRISPR targets for B2NID9 (CENTRORADIALIS-like protein (MdCENa)):
+Position 38: YNGHELFPSSVTIKPKVEVHGG

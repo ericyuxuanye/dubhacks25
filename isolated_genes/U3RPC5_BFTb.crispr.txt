@@ -1,0 +1,2 @@
+CRISPR targets for U3RPC5 (BFTb):
+Position 36: VANGHELMPSVIAEKPRVDIGG

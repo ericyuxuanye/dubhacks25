@@ -1,0 +1,2 @@
+CRISPR targets for B3VT04 (Terminal flower 1 (TFL1-1)):
+Position 28: CNGLELFPSVVTAKPRVEIQGG

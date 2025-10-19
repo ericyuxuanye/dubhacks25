@@ -1,0 +1,2 @@
+CRISPR targets for Q6YNE5 (AP1-like protein (APETALA1-like)):
+Position 186: WEQQNHDLDLLPQPLPCLNIGG

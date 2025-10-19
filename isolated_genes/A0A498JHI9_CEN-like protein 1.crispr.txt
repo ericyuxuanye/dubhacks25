@@ -1,0 +1,2 @@
+CRISPR targets for A0A498JHI9 (CEN-like protein 1):
+Position 36: VANGHELMPSVIAAKPRVEIGG

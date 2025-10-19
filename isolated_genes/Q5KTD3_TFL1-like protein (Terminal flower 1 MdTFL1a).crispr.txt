@@ -1,0 +1,2 @@
+CRISPR targets for Q5KTD3 (TFL1-like protein (Terminal flower 1 MdTFL1a)):
+Position 36: CNGLELFPSVVTAKPRVEIQGG

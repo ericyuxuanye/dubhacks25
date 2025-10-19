@@ -1,0 +1,2 @@
+CRISPR targets for U3RIZ5 (MFTb):
+Position 72: PSPSEPSMREWVHWIVSDIPGG

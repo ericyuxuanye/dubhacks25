@@ -1,0 +1,2 @@
+CRISPR targets for Q76M79 (TFL1-like protein (Terminal flower 1 MdTFL1-1)):
+Position 36: CNGLELFPSVVTAKPRVEIQGG

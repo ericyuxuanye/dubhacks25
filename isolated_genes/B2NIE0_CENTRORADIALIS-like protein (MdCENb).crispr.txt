@@ -1,0 +1,2 @@
+CRISPR targets for B2NIE0 (CENTRORADIALIS-like protein (MdCENb)):
+Position 38: YNGHELFPSSVTIKPKVEVHGG
