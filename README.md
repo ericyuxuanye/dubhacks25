@@ -1,4 +1,6 @@
-# BloomSync AI — dubhacks25
+# BloomSync AI
+
+# ⚠️⚠️⚠️ THIS IS A TOY ⚠️⚠️⚠️
 
 This repository contains a small, self-contained reinforcement learning (RL)
 toy and a simple GUI demo. It's intended for educational and demo purposes
