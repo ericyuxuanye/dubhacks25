@@ -19,15 +19,26 @@ import http.server
 import socketserver
 from functools import partial
 
+from .env import SequenceEnv
+from .sample_sequences import get_case
 from .train import train as train_fn
 
 
 class TrainingGUI:
-    def __init__(self, master, episodes=200, seq_len=20, max_edits=8):
+    def __init__(
+        self,
+        master,
+        episodes=200,
+        seq_len=None,
+        max_edits=8,
+        case_id="mdtfl1_to_mdft1",
+    ):
         self.master = master
         self.episodes = episodes
         self.seq_len = seq_len
         self.max_edits = max_edits
+        self.case_id = case_id
+        self.case = get_case(case_id)
         
         # HTTP server for serving visualizer
         self.httpd = None
@@ -42,26 +53,33 @@ class TrainingGUI:
         self.start_btn = ttk.Button(self.frame, text="Start Training", command=self.start_training)
         self.start_btn.grid(row=0, column=0, pady=(0, 8))
 
+        case_text = (
+            f"Scenario: {self.case.initial_name} → {self.case.target_name} "
+            f"({len(self.case.initial_sequence)} bp)"
+        )
+        self.case_lbl = ttk.Label(self.frame, text=case_text)
+        self.case_lbl.grid(row=1, column=0, pady=(0, 8), sticky="w")
+
         self.progress = tk.IntVar(value=0)
         self.pbar = ttk.Progressbar(self.frame, orient="horizontal", length=400, mode="determinate", variable=self.progress)
-        self.pbar.grid(row=1, column=0, pady=(0, 8))
+        self.pbar.grid(row=2, column=0, pady=(0, 8))
 
         self.status_lbl = ttk.Label(self.frame, text="Idle")
-        self.status_lbl.grid(row=2, column=0)
+        self.status_lbl.grid(row=3, column=0)
 
         self.initial_lbl = ttk.Label(self.frame, text="Initial seq: -")
-        self.initial_lbl.grid(row=3, column=0, pady=(8, 0))
+        self.initial_lbl.grid(row=4, column=0, pady=(8, 0))
 
         self.result_lbl = ttk.Label(self.frame, text="Final seq: -")
-        self.result_lbl.grid(row=4, column=0, pady=(4, 0))
+        self.result_lbl.grid(row=5, column=0, pady=(4, 0))
         
         # Button to open visualizer
         self.viz_btn = ttk.Button(self.frame, text="🧬 Open Visualizer", command=self.open_visualizer, state="disabled")
-        self.viz_btn.grid(row=5, column=0, pady=(8, 0))
+        self.viz_btn.grid(row=6, column=0, pady=(8, 0))
 
         # Objectives: checkboxes to allow any combination
         self.objectives_frame = ttk.LabelFrame(self.frame, text="Objectives", padding=8)
-        self.objectives_frame.grid(row=6, column=0, pady=(8, 0), sticky="w")
+        self.objectives_frame.grid(row=7, column=0, pady=(8, 0), sticky="w")
 
         # BooleanVars for each objective
         self.obj_vars = {
@@ -70,6 +88,9 @@ class TrainingGUI:
             "height": tk.BooleanVar(value=False),
             "concentrate_zone": tk.BooleanVar(value=False),
         }
+        for key in self.case.objectives:
+            if key in self.obj_vars:
+                self.obj_vars[key].set(True)
 
         ttk.Checkbutton(self.objectives_frame, text="Cause flowers / fruit on new wood", variable=self.obj_vars["flowers"]).grid(row=0, column=0, sticky="w")
         ttk.Checkbutton(self.objectives_frame, text="Change wood strength for single-wire training", variable=self.obj_vars["wood_strength"]).grid(row=1, column=0, sticky="w")
@@ -88,7 +109,7 @@ class TrainingGUI:
         ]
         self.preset_var = tk.StringVar(value="Custom")
         self.preset_combo = ttk.Combobox(self.frame, values=presets, textvariable=self.preset_var, state="readonly", width=60)
-        self.preset_combo.grid(row=7, column=0, pady=(8, 0))
+        self.preset_combo.grid(row=8, column=0, pady=(8, 0))
         self.preset_combo.bind("<<ComboboxSelected>>", self._on_preset_selected)
 
         self.training_thread = None
@@ -96,6 +117,7 @@ class TrainingGUI:
         self.agent = None
         self.env = None
         self.initial_sequence = None  # Store initial sequence for visualizer
+        self.reward_trace = []
 
     def start_training(self):
         if self.training_thread and self.training_thread.is_alive():
@@ -108,8 +130,11 @@ class TrainingGUI:
         # create a fresh env and show the initial sequence
         # we create it here so the GUI can display the starting seq immediately
         try:
-            from .env import SequenceEnv
-            self.env = SequenceEnv(seq_len=self.seq_len, max_edits=self.max_edits)
+            self.env = SequenceEnv(
+                seq_len=self.seq_len,
+                max_edits=self.max_edits,
+                case_id=self.case_id,
+            )
             # attach selected objectives to the env (non-intrusive attribute)
             self.env.objectives = self.get_selected_objectives()
             # Store the initial sequence for the visualizer
@@ -135,7 +160,13 @@ class TrainingGUI:
         # Run the existing toy training loop; this may take a few seconds.
         try:
             # pass pre-created env so GUI and training reference the same sequence
-            self.agent, self.env = train_fn(episodes=self.episodes, seq_len=self.seq_len, max_edits=self.max_edits, env=self.env)
+            self.agent, self.env, self.reward_trace = train_fn(
+                episodes=self.episodes,
+                seq_len=self.seq_len,
+                max_edits=self.max_edits,
+                env=self.env,
+                case_id=self.case_id,
+            )
         except Exception as e:
             # capture error and show in UI thread
             self.master.after(0, lambda: self._on_failure(str(e)))
@@ -160,7 +191,8 @@ class TrainingGUI:
 
     def _on_done(self):
         self.progress.set(100)
-        self.status_lbl.config(text="Training finished")
+        final_reward = self.reward_trace[-1] if self.reward_trace else 0.0
+        self.status_lbl.config(text=f"Training finished (reward {final_reward:+.3f})")
         final = getattr(self.env, 'sequence', 'N/A')
         # display final sequence and the objectives that were used
         objectives = getattr(self.env, 'objectives', [])
@@ -176,6 +208,7 @@ class TrainingGUI:
     def _on_failure(self, msg):
         self.status_lbl.config(text=f"Error: {msg}")
         self.start_btn.config(state="normal")
+        self.reward_trace = []
     
     def _start_server(self):
         """Start a simple HTTP server to serve the visualizer HTML."""

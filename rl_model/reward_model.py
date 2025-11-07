@@ -1,5 +1,5 @@
-import math
 from collections import Counter
+from typing import Iterable, Optional
 
 def kmer_score(seq, target, k=3):
     """Simple k-mer overlap score between seq and target (normalized).
@@ -29,11 +29,22 @@ def motif_value(seq, motifs=None):
     return count / len(motifs)
 
 
-def compute_reward(seq, target_ft, target_tfl1, n_edits,
-                   w1=1.0, w2=0.8, w3=0.1, w4=0.5):
-    """Compute R = w1*S_FT - w2*S_TFL1 - w3*N_edits + w4*V_motifs"""
-    s_ft = kmer_score(seq, target_ft)
-    s_tfl1 = kmer_score(seq, target_tfl1)
-    v_m = motif_value(seq)
-    R = w1 * s_ft - w2 * s_tfl1 - w3 * (n_edits) + w4 * v_m
+def compute_reward(
+    seq: str,
+    target_ft: str,
+    target_tfl1: str,
+    n_edits: int,
+    *,
+    motifs: Optional[Iterable[str]] = None,
+    w1: float = 1.0,
+    w2: float = 0.9,
+    w3: float = 0.4,
+    w4: float = 0.6,
+) -> float:
+    """Compute R = w1*S_FT - w2*S_TFL1 - w3*edit_penalty + w4*V_motifs."""
+    s_ft = kmer_score(seq, target_ft, k=4)
+    s_tfl1 = kmer_score(seq, target_tfl1, k=4)
+    v_m = motif_value(seq, motifs=motifs)
+    edit_penalty = n_edits / max(1, len(seq))
+    R = w1 * s_ft - w2 * s_tfl1 - w3 * edit_penalty + w4 * v_m
     return float(R)

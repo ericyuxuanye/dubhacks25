@@ -5,15 +5,18 @@ import webbrowser
 import os
 import urllib.parse
 
+from rl_model.sample_sequences import get_case
+
 
 def test_visualizer_with_params():
     # Get the path to the HTML file
     current_dir = os.path.dirname(os.path.abspath(__file__))
     html_path = os.path.join(current_dir, "sequence_transformation_viz.html")
     
-    # Test sequences
-    initial_seq = "ACGTACGTACGTACGTACGT"  # 20 bases
-    target_seq = "TGCATGCATGCATGCATGCA"   # 20 bases
+    # Test sequences pulled from the curated MdTFL1 → MdFT1 case
+    case = get_case()
+    initial_seq = case.initial_sequence
+    target_seq = case.target_sequence
     
     # URL encode the sequences
     params = urllib.parse.urlencode({

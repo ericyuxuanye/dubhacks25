@@ -9,6 +9,8 @@ of the integration.
 import sys
 import os
 
+from rl_model.sample_sequences import get_case
+
 def print_header():
     print("=" * 70)
     print("🧬 RL Model + 3D DNA Visualizer Integration Demo")
@@ -46,9 +48,9 @@ def test_visualizer_params():
         current_dir = os.path.dirname(os.path.abspath(__file__))
         html_path = os.path.join(current_dir, "sequence_transformation_viz.html")
         
-        # Test sequences - clearly different patterns
-        initial_seq = "ACGTACGTACGTACGTACGT"  # Repeating ACGT
-        target_seq = "TGCATGCATGCATGCATGCA"   # Repeating TGCA
+        case = get_case()
+        initial_seq = case.initial_sequence
+        target_seq = case.target_sequence
         
         params = urllib.parse.urlencode({
             'initial': initial_seq,
@@ -58,7 +60,7 @@ def test_visualizer_params():
         file_url = f"file://{html_path}?{params}"
         
         print(f"\n✓ HTML file found: {html_path}")
-        print(f"\n✓ Test sequences:")
+        print(f"\n✓ Test sequences (MdTFL1 → MdFT1 demo):")
         print(f"  Initial: {initial_seq}")
         print(f"  Target:  {target_seq}")
         print(f"\n✓ Opening browser with URL:")
@@ -103,7 +105,7 @@ def run_full_integration():
         print("✓ Look for the new window!")
         
         root = tk.Tk()
-        app = TrainingGUI(root, episodes=50, seq_len=20, max_edits=8)
+        app = TrainingGUI(root, episodes=60, max_edits=8)
         
         print("\n✓ GUI launched successfully")
         print("✓ Follow the steps in the GUI window")
@@ -131,9 +133,10 @@ def quick_test():
         current_dir = os.path.dirname(os.path.abspath(__file__))
         html_path = os.path.join(current_dir, "sequence_transformation_viz.html")
         
-        # Very short sequences for quick testing
-        initial_seq = "AAAAAAAAAA"  # 10 A's
-        target_seq = "TTTTTTTTTT"   # 10 T's
+        # Trimmed sequences for quick testing
+        case = get_case()
+        initial_seq = case.initial_sequence[:24]
+        target_seq = case.target_sequence[:24]
         
         params = urllib.parse.urlencode({
             'initial': initial_seq,
@@ -143,9 +146,9 @@ def quick_test():
         file_url = f"file://{html_path}?{params}"
         
         print(f"\n✓ Quick test sequences:")
-        print(f"  Initial: {initial_seq} (all A's)")
-        print(f"  Target:  {target_seq} (all T's)")
-        print(f"\n✓ This should show a simple A → T transformation")
+        print(f"  Initial: {initial_seq}")
+        print(f"  Target:  {target_seq}")
+        print(f"\n✓ This shows a trimmed MdTFL1 → MdFT1 transition")
         
         webbrowser.open(file_url)
         
@@ -165,10 +168,7 @@ def view_docs():
     current_dir = os.path.dirname(os.path.abspath(__file__))
     
     docs = {
-        "1": ("QUICKSTART.md", "Quick start guide for users"),
-        "2": ("INTEGRATION_README.md", "Detailed technical documentation"),
-        "3": ("INTEGRATION_SUMMARY.md", "Summary of changes made"),
-        "4": ("ARCHITECTURE.md", "System architecture diagrams"),
+        "1": ("README.md", "Project overview + demos"),
     }
     
     print("\nAvailable documentation:")
@@ -178,9 +178,9 @@ def view_docs():
         print(f"  {key}. {exists} {filename}")
         print(f"     {desc}")
     
-    print("\n  5. Return to main menu")
+    print("\n  2. Return to main menu")
     
-    choice = input("\nSelect a document to view (1-5): ").strip()
+    choice = input("\nSelect a document to view (1-2): ").strip()
     
     if choice in docs:
         filename, _ = docs[choice]
@@ -201,7 +201,7 @@ def view_docs():
         else:
             print(f"\n✗ File not found: {filepath}")
             input("\nPress Enter to return to menu...")
-    elif choice == "5":
+    elif choice == "2":
         return
     else:
         print("\n✗ Invalid choice")
@@ -228,9 +228,7 @@ def main():
             print("Thank you for testing the integration!")
             print("─" * 70)
             print("\nFor more information, see:")
-            print("  • QUICKSTART.md - User guide")
-            print("  • INTEGRATION_README.md - Technical docs")
-            print("  • ARCHITECTURE.md - System diagrams")
+            print("  • README.md - Project overview and usage notes")
             print()
             sys.exit(0)
         else:

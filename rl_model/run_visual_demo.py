@@ -5,12 +5,14 @@ This script is intended for local debugging and demo generation.
 """
 
 from rl_model import train
-from rl_model.visualize import animate_edit_history, build_snapshots
+from rl_model.sample_sequences import get_case
+from rl_model.visualize import animate_edit_history
 
 
-def run_and_visualize(out_html="visual_demo.html", episodes=30, seq_len=20, max_edits=8):
+def run_and_visualize(out_html="visual_demo.html", episodes=30, max_edits=8):
     # create env and run the short training to get an agent and env
-    agent, env = train.train(episodes=episodes, seq_len=seq_len, max_edits=max_edits)
+    case = get_case()
+    agent, env, _ = train.train(episodes=episodes, max_edits=max_edits, case_id=case.case_id)
 
     # We will produce a visualization from env.history if present
     # SequenceEnv records edits into env.history during demo runs.
@@ -18,7 +20,7 @@ def run_and_visualize(out_html="visual_demo.html", episodes=30, seq_len=20, max_
 
     # More reliably: reset a new env, capture initial seq, run the trained agent
     from rl_model.env import SequenceEnv
-    e = SequenceEnv(seq_len=seq_len, max_edits=max_edits)
+    e = SequenceEnv(max_edits=max_edits, case_id=case.case_id)
     init_seq = e.sequence
     edits = []
     done = False

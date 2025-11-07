@@ -17,4 +17,5 @@ __all__ = [
     "value",
     "scorers",
     "constraints",
+    "sample_sequences",
 ]

@@ -7,7 +7,7 @@ from rl_model.gui import TrainingGUI
 
 def main():
     root = tk.Tk()
-    app = TrainingGUI(root, episodes=50, seq_len=20, max_edits=8)
+    app = TrainingGUI(root, episodes=60, max_edits=8)
     root.mainloop()
 
 

@@ -13,3 +13,10 @@ def test_env_step_and_reward():
     # compute reward doesn't crash
     r = compute_reward(env.sequence, env.target_ft, env.target_tfl1, n_edits=1)
     assert isinstance(r, float)
+
+
+def test_env_defaults_to_demo_case():
+    env = SequenceEnv(max_edits=4)
+    seq = env.reset()
+    assert env.case is not None
+    assert len(seq) == len(env.target_ft) == len(env.target_tfl1)
