@@ -1,56 +1,69 @@
 # BloomSync AI
 
-BloomSync AI is a compact reinforcement-learning toy built for demos: a
-REINFORCE agent edits a short MdTFL1a fragment toward an MdFT1-like target,
-then pipes the result into a WebGL visualizer so you can narrate the “before →
-after” story without touching real lab workflows.
+# ⚠️⚠️⚠️ THIS IS A TOY ⚠️⚠️⚠️
 
-## Safety & intent
-- Ships only synthetic, length-matched fragments and motif scores.
-- No code describes or executes wet-lab procedures.
-- Purpose: UI/UX storytelling, hackathon pitches, and pedagogy.
+This repository contains a small, self-contained reinforcement learning (RL)
+toy and a simple GUI demo. It's intended for educational and demo purposes
+only — it does not provide wet-lab instructions or actionable biological
+protocols.
 
-## Setup
-1. Install Python 3.10+ and create a virtual environment.
-2. `pip install -r rl_model/requirements.txt`
+Contents
+- `rl_model/`: RL toy implementation (environment, agent, reward model,
+  training loop, and a Tkinter GUI demo).
+- data files used for demos: `flowering_genes.csv`, `flowering_genes_with_fasta.csv`.
 
-## Run the demos
-- RL console trace: `python3 -m rl_model.run_demo`
-- GUI + objectives + visualizer launcher: `python3 -m rl_model.gui`
-- Menu with shortcuts/tests: `python3 demo.py`
-- Standalone visualizer sanity check: `python3 test_visualizer_params.py`
-- Smoke tests: `python3 -m pytest rl_model/tests/test_env.py`
+Highlights
+- A minimal sequence-editing environment (`SequenceEnv`) that accepts edits
+  and ends episodes after a budgeted number of edits.
+- A small REINFORCE agent implemented in `rl_model/agent.py` and training loop
+  in `rl_model/train.py`.
+- A Tkinter GUI demo (`rl_model/gui.py`) that runs training in a background
+  thread and shows a simulated progress bar. The GUI now includes an
+  Objectives panel (checkboxes + presets) so users can select optimization
+  goals for demonstration.
 
-## Visualizer flow (GUI button)
+Quickstart
+
+1. Create a Python environment (recommended: conda or venv) with Python 3.10+.
+
+2. Install dependencies listed in `rl_model/requirements.txt`:
+
+```fish
+conda activate <env>
+pip install -r rl_model/requirements.txt
 ```
-SequenceEnv reset (curated MdTFL1→MdFT1 case)
-        ↓
-Background REINFORCE training with shaped reward
-        ↓
-GUI enables “🧬 Open Visualizer” and starts a tiny HTTP server
-        ↓
-Browser opens http://localhost:PORT/sequence_transformation_viz.html
-        ↓
-JavaScript reads ?initial=...&target=... and animates the edits
+
+3. Run the short demo (console):
+
+```fish
+python -m rl_model.run_demo
 ```
 
-## Repo highlights
-- `rl_model/sample_sequences.py` – curated demo case + motifs.
-- `rl_model/env.py` – deterministic environment with noisy resets + edit log.
-- `rl_model/reward_model.py` – FT vs TFL1 k-mer overlap, motif boosts, edit cost.
-- `rl_model/train.py` – REINFORCE loop returning a reward trace for the UI.
-- `rl_model/gui.py` – Tkinter front-end, objectives panel, browser launcher.
-- `sequence_transformation_viz.html` – WebGL helix with play/step/reset controls.
-- `demo.py` & `test_*.py` – CLI helpers for demos and integration smoke tests.
+4. Run the GUI demo:
 
-## Extending the toy
-- Add new curated fragments in `sample_sequences.py` and pass `case_id=` to the
-  env or GUI.
-- Wire GUI objective selections into `reward_model.compute_reward` for custom
-  scoring.
-- Swap the heuristic reward with a learned scorer while keeping the same demo UX.
+```fish
+python -m rl_model.gui
+```
 
----
+Using the GUI Objectives
+- The GUI provides checkboxes for these objectives (any combination allowed):
+  - Cause flowers / fruit on new wood
+  - Change wood strength for single-wire training
+  - Change height to facilitate picking
+  - Concentrate fruit zone for efficient picking
+- A preset combobox lets you quickly pick common combinations (All, None,
+  or single-objective presets). Selections are attached to the environment as
+  `env.objectives` for demonstration; the training loop behavior is unchanged
+  unless you choose to wire the objectives into the reward model.
 
-Treat BloomSync AI as narrative scaffolding—safe to show, fun to tweak, and
-decoupled from real experimentation. Have fun telling the story! 🎬🧬
+Development notes
+- Tests: `rl_model/tests/test_env.py` includes smoke tests for `SequenceEnv`.
+- To add objective-aware training, update `rl_model/reward_model.py` to
+  consider `env.objectives` when computing rewards.
+
+License & safety
+- This is a demo project. The code is explicitly non-actionable with
+  respect to biological protocols. Treat it as a pedagogical example only.
+
+If you want a tailored README section (e.g., for a talk or hackathon
+poster), tell me which audience and I'll generate a short version.
